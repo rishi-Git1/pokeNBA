@@ -13,8 +13,10 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
+from sqlalchemy import func, select
 
-from backend.database import create_all
+from backend.database import SessionLocal, create_all
+from backend.models import Team
 from backend.routers import draft, league, players, playoffs, sim, teams, transactions
 
 FRONTEND_DIR = Path(__file__).resolve().parents[1] / "frontend"
@@ -24,6 +26,12 @@ FRONTEND_DIR = Path(__file__).resolve().parents[1] / "frontend"
 async def lifespan(_: FastAPI):
     # Idempotent — safe to call even if seed.py has already populated the DB.
     create_all()
+    # Fresh deploys (e.g. Render) start with an empty SQLite file — seed once.
+    with SessionLocal() as db:
+        team_count = db.scalar(select(func.count()).select_from(Team)) or 0
+        if team_count == 0:
+            from backend.seed import reset_database
+            reset_database(verbose=False)
     yield
 
 

@@ -88,6 +88,24 @@ uvicorn backend.main:app --reload
 # API:  http://127.0.0.1:8000/docs
 ```
 
+## Deploy on Render
+
+Render was defaulting to **Python 3.14**, which has no pre-built wheels for `pydantic-core` yet — the build tries to compile Rust and fails. This repo pins **Python 3.12** via `runtime.txt`.
+
+**Dashboard settings:**
+
+| Setting | Value |
+|---|---|
+| **Build Command** | `pip install --upgrade pip && pip install -r requirements.txt` |
+| **Start Command** | `uvicorn backend.main:app --host 0.0.0.0 --port $PORT` |
+
+Or connect the repo and use the included `render.yaml` blueprint.
+
+**Notes:**
+- The start command must be `backend.main:app` (not `app.main:app`).
+- On first boot the app auto-seeds if the database is empty.
+- SQLite on Render is **ephemeral** unless you add a [persistent disk](https://render.com/docs/disks) and set `POKENBA_DATABASE_URL=sqlite:////var/data/pokenba.db`.
+
 Or sim from the CLI without bringing up the UI:
 
 ```bash
