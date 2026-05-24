@@ -1,0 +1,212 @@
+{
+  "badges": {
+    "Clutch Performer": {
+      "description": "Increases overall scoring efficiency in the 4th quarter or clutch situations.",
+      "trigger": "4th_quarter",
+      "effects": {
+        "self_inside_fg_pct": 0.05,
+        "self_outside_fg_pct": 0.05
+      }
+    },
+    "Lockdown Defender": {
+      "description": "Lowers the matchup's usage rate and offensive efficiency.",
+      "trigger": "always",
+      "effects": {
+        "opp_usage_rate": -0.05,
+        "opp_outside_fg_pct": -0.05,
+        "opp_inside_fg_pct": -0.05
+      }
+    },
+    "Sniper": {
+      "description": "Elite 3PT shooter. High conversion rate on outside shots.",
+      "trigger": "on_shot_outside",
+      "effects": {
+        "self_outside_fg_pct": 0.08,
+        "self_usage_rate": 0.02
+      }
+    },
+    "Slasher": {
+      "description": "Elite finisher at the rim. High conversion on inside shots.",
+      "trigger": "on_shot_inside",
+      "effects": {
+        "self_inside_fg_pct": 0.10,
+        "self_usage_rate": 0.03
+      }
+    },
+    "Fast Break Threat": {
+      "description": "Pushes the pace, increasing total game possessions and transition scoring.",
+      "trigger": "always",
+      "effects": {
+        "team_pace": 1.05,
+        "self_inside_fg_pct": 0.03
+      }
+    },
+    "Iron Man": {
+      "description": "Requires very little rest. Stamina drains much slower.",
+      "trigger": "stamina_drain",
+      "effects": {
+        "self_stamina_drain_multiplier": 0.5
+      }
+    },
+    "Floor General": {
+      "description": "Increases team offensive flow and lowers team turnover rate.",
+      "trigger": "always",
+      "effects": {
+        "team_assist_rate": 0.08,
+        "team_turnover_rate": -0.05
+      }
+    },
+    "Post Anchor": {
+      "description": "Elite interior presence. Boosts rebounds and blocks.",
+      "trigger": "on_defense_inside",
+      "effects": {
+        "self_rebound_rate": 0.08,
+        "self_block_rate": 0.05,
+        "opp_inside_fg_pct": -0.06
+      }
+    },
+    "Heat Check": {
+      "description": "Offensive stats snowball after a made basket.",
+      "trigger": "after_made_shot",
+      "effects": {
+        "self_usage_rate": 0.05,
+        "self_outside_fg_pct": 0.03,
+        "self_inside_fg_pct": 0.03
+      }
+    },
+    "Pickpocket": {
+      "description": "Aggressive perimeter defender. Increases steal rate.",
+      "trigger": "on_defense_outside",
+      "effects": {
+        "self_steal_rate": 0.05,
+        "opp_turnover_rate": 0.04
+      }
+    },
+    "Volume Scorer": {
+      "description": "High usage rate player that demands the ball, but suffers a slight efficiency drop.",
+      "trigger": "always",
+      "effects": {
+        "self_usage_rate": 0.10,
+        "self_inside_fg_pct": -0.02,
+        "self_outside_fg_pct": -0.02
+      }
+    },
+    "Glass Cannon": {
+      "description": "Massive offensive boost, but becomes a liability on defense.",
+      "trigger": "always",
+      "effects": {
+        "self_inside_fg_pct": 0.08,
+        "self_outside_fg_pct": 0.08,
+        "opp_inside_fg_pct": 0.05,
+        "opp_outside_fg_pct": 0.05
+      }
+    },
+    "Neutral": {
+      "description": "No significant impact on basketball simulation.",
+      "trigger": "none",
+      "effects": {}
+    }
+  },
+  "ability_mapping": {
+    "Overgrow": "Clutch Performer",
+    "Blaze": "Clutch Performer",
+    "Torrent": "Clutch Performer",
+    "Swarm": "Clutch Performer",
+    "Defeatist": "Neutral",
+
+    "Intimidate": "Lockdown Defender",
+    "Unaware": "Lockdown Defender",
+    "Clear Body": "Lockdown Defender",
+    "White Smoke": "Lockdown Defender",
+    "Dauntless Shield": "Lockdown Defender",
+    "Good as Gold": "Lockdown Defender",
+
+    "Sniper": "Sniper",
+    "Mega Launcher": "Sniper",
+    "Keen Eye": "Sniper",
+    "Compound Eyes": "Sniper",
+    "Punk Rock": "Sniper",
+
+    "Huge Power": "Slasher",
+    "Pure Power": "Slasher",
+    "Iron Fist": "Slasher",
+    "Strong Jaw": "Slasher",
+    "Tough Claws": "Slasher",
+    "Hustle": "Slasher",
+    "Guts": "Slasher",
+    "Sheer Force": "Slasher",
+    "Steely Spirit": "Slasher",
+    "Sword of Ruin": "Slasher",
+
+    "Speed Boost": "Fast Break Threat",
+    "Swift Swim": "Fast Break Threat",
+    "Chlorophyll": "Fast Break Threat",
+    "Sand Rush": "Fast Break Threat",
+    "Slush Rush": "Fast Break Threat",
+    "Surge Surfer": "Fast Break Threat",
+    "Unburden": "Fast Break Threat",
+    "Quick Feet": "Fast Break Threat",
+
+    "Stamina": "Iron Man",
+    "Sturdy": "Iron Man",
+    "Regenerator": "Iron Man",
+    "Natural Cure": "Iron Man",
+    "Poison Heal": "Iron Man",
+    "Multiscale": "Iron Man",
+    "Ice Scales": "Iron Man",
+
+    "Prankster": "Floor General",
+    "Telepathy": "Floor General",
+    "Symbiosis": "Floor General",
+    "Friend Guard": "Floor General",
+    "Plus": "Floor General",
+    "Minus": "Floor General",
+    "Aura Break": "Floor General",
+
+    "Thick Fat": "Post Anchor",
+    "Solid Rock": "Post Anchor",
+    "Filter": "Post Anchor",
+    "Fluffy": "Post Anchor",
+    "Water Absorb": "Post Anchor",
+    "Volt Absorb": "Post Anchor",
+    "Flash Fire": "Post Anchor",
+    "Sap Sipper": "Post Anchor",
+    "Levitate": "Post Anchor",
+
+    "Moxie": "Heat Check",
+    "Beast Boost": "Heat Check",
+    "Soul-Heart": "Heat Check",
+    "Chilling Neigh": "Heat Check",
+    "Grim Neigh": "Heat Check",
+    "As One": "Heat Check",
+
+    "Pickpocket": "Pickpocket",
+    "Magician": "Pickpocket",
+    "Frisk": "Pickpocket",
+    "Infiltrator": "Pickpocket",
+    "Shadow Tag": "Pickpocket",
+    "Arena Trap": "Pickpocket",
+
+    "Technician": "Volume Scorer",
+    "Skill Link": "Volume Scorer",
+    "Adaptability": "Volume Scorer",
+    "Defiant": "Volume Scorer",
+    "Competitive": "Volume Scorer",
+    "Download": "Volume Scorer",
+
+    "Reckless": "Glass Cannon",
+    "Rock Head": "Glass Cannon",
+    "No Guard": "Glass Cannon",
+    "Gorilla Tactics": "Glass Cannon",
+
+    "Run Away": "Neutral",
+    "Pickup": "Neutral",
+    "Honey Gather": "Neutral",
+    "Illuminate": "Neutral",
+    "Damp": "Neutral",
+    "Stench": "Neutral",
+    "Color Change": "Neutral",
+    "Synchronize": "Neutral",
+    "Trace": "Neutral"
+  }
+}
