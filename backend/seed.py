@@ -103,12 +103,17 @@ def seed_teams(db: Session) -> list[Team]:
 # Stage 2: Player pool
 # ----------------------------------------------------------------------------
 def build_player_pool(rng: random.Random) -> list[Player]:
-    """Read minidex and inflate to a pool sized for a full league + free agents."""
+    """Read minidex and build the league player pool.
+
+    One canonical copy of every species in the dex is always created. If the
+    dex is smaller than ``num_teams * roster_size + fa_buffer``, additional
+    clones with ±variance are generated until the target pool size is met.
+    """
     with settings.minidex_path.open(encoding="utf-8") as f:
         data = json.load(f)
 
     species_entries = data["pokemon"]
-    target_pool_size = settings.num_teams * settings.roster_size + 60  # 60 free agents
+    target_pool_size = settings.num_teams * settings.roster_size + settings.fa_buffer
 
     pool: list[Player] = []
     generation_counter: Counter[str] = Counter()
@@ -132,26 +137,27 @@ def build_player_pool(rng: random.Random) -> list[Player]:
         )
 
     # Subsequent rounds — clone each species with ±variance until we hit target.
-    while len(pool) < target_pool_size:
-        for entry in species_entries:
-            if len(pool) >= target_pool_size:
-                break
-            species = entry["name"]
-            generation_counter[species] += 1
-            gen = generation_counter[species]
-            base_stats = StatBlock(**entry["stats"])
-            varied = base_stats.varied(settings.regen_stat_variance, rng)
-            pool.append(
-                build_player(
-                    pokedex_id=entry["id"],
-                    species=species,
-                    name=f"{species} {roman(gen)}",
-                    stats=varied,
-                    primary_ability=entry["primary_ability"],
-                    generation=gen,
-                    rng=rng,
+    if len(species_entries) < target_pool_size:
+        while len(pool) < target_pool_size:
+            for entry in species_entries:
+                if len(pool) >= target_pool_size:
+                    break
+                species = entry["name"]
+                generation_counter[species] += 1
+                gen = generation_counter[species]
+                base_stats = StatBlock(**entry["stats"])
+                varied = base_stats.varied(settings.regen_stat_variance, rng)
+                pool.append(
+                    build_player(
+                        pokedex_id=entry["id"],
+                        species=species,
+                        name=f"{species} {roman(gen)}",
+                        stats=varied,
+                        primary_ability=entry["primary_ability"],
+                        generation=gen,
+                        rng=rng,
+                    )
                 )
-            )
 
     return pool
 

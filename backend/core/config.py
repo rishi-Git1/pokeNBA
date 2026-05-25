@@ -19,6 +19,7 @@ class Settings(BaseSettings):
     num_teams: int = 30
     roster_size: int = 15
     starters_per_team: int = 5
+    fa_buffer: int = 60  # extra free agents when the dex is smaller than the league
 
     # --- Salary cap ---
     # Average fully-evolved BST is ~500. With 15-man rosters, a realistic

@@ -23,6 +23,5 @@ dist/
 *.swp
 *.swo
 
-# OS
-.DS_Store
-Thumbs.db
+# PokeAPI build cache (regenerate with scripts/build_minidex.py)
+data/pokeapi_cache/
