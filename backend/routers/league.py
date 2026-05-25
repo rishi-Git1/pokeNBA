@@ -12,6 +12,7 @@ from backend.core.config import settings
 from backend.database import get_db
 from backend.league.aging import end_of_season, reset_team_records
 from backend.league.lifecycle import start_next_season as lifecycle_start_next_season
+from backend.league.injuries import enrich_players, fa_signable_clause
 from backend.league.state import get_state
 from backend.league.transactions import (
     ROSTER_MAX_AFTER_TRADE,
@@ -35,14 +36,20 @@ def standings(db: Session = Depends(get_db)) -> list[Team]:
 
 
 @router.get("/free-agents", response_model=list[PlayerSummary])
-def free_agents(db: Session = Depends(get_db), limit: int = 100) -> list[Player]:
+def free_agents(db: Session = Depends(get_db), limit: int = 100) -> list[dict]:
+    state = get_state(db)
     stmt = (
         select(Player)
-        .where(Player.team_id.is_(None), Player.is_retired.is_(False))
+        .where(
+            Player.team_id.is_(None),
+            Player.is_retired.is_(False),
+            fa_signable_clause(state.current_season),
+        )
         .order_by(Player.bst.desc())
         .limit(limit)
     )
-    return list(db.scalars(stmt))
+    players = list(db.scalars(stmt))
+    return enrich_players(db, players, season=state.current_season)
 
 
 @router.get("/badges")

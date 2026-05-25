@@ -85,8 +85,8 @@ class Player(Base):
     drafted_pick_number: Mapped[int | None] = mapped_column(Integer, nullable=True)
     drafted_season: Mapped[int | None] = mapped_column(Integer, nullable=True)
 
-    # Set when a player is cut while injured; halves stats on next signing.
-    injury_penalty_pending: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False)
+    # Set when cut while injured — removed from the FA pool for this season.
+    fa_signing_blocked_season: Mapped[int | None] = mapped_column(Integer, nullable=True)
 
     team: Mapped["Team | None"] = relationship(back_populates="players", foreign_keys=[team_id])
     box_scores: Mapped[list["BoxScore"]] = relationship(back_populates="player")

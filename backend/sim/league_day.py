@@ -20,7 +20,7 @@ from sqlalchemy import insert, select
 from sqlalchemy.orm import Session
 
 from backend.models import BoxScore, Game, Player, Team
-from backend.league.injuries import InjuryReport, advance_injury_clocks, merge_reports, prepare_team_roster
+from backend.league.injuries import InjuryReport, advance_injury_clocks, dedupe_report_dict, merge_reports, prepare_team_roster
 from backend.sim.game import GameResult, run_game
 
 
@@ -195,7 +195,7 @@ def sim_day(
         games_played=len(results),
         box_scores_written=len(box_score_payload),
         results=results,
-        injury_report=day_report.to_dict() if day_report.new_injuries or day_report.unavailable else None,
+        injury_report=dedupe_report_dict(day_report.to_dict()) if day_report.new_injuries or day_report.unavailable else None,
     )
 
 

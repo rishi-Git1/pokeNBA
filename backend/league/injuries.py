@@ -20,6 +20,12 @@ BASE_INJURY_CHANCE: float = 0.01
 INJURY_STACK_PER_PRIOR: float = 0.015
 MIN_GAMES_OUT: int = 1
 MAX_GAMES_OUT: int = 6
+ROTATION_SIZE: int = 10  # only rotation players roll for new injuries
+
+
+def _rotation_pool(roster: list[Player]) -> list[Player]:
+    """Top-N roster players by BST — approximates who actually plays."""
+    return sorted(roster, key=lambda p: (p.bst, p.id), reverse=True)[:ROTATION_SIZE]
 
 
 @dataclass(slots=True)
@@ -168,6 +174,7 @@ def prepare_team_roster(
 
     when = event_date or date.today()
     states = _load_states_for_roster(db, season=season, roster=roster)
+    rotation_ids = {p.id for p in _rotation_pool(roster)}
     available: list[Player] = []
 
     for player in roster:
@@ -182,6 +189,10 @@ def prepare_team_roster(
                 games_remaining=state.games_remaining,
                 reason="existing",
             ))
+            continue
+
+        if player.id not in rotation_ids:
+            available.append(player)
             continue
 
         prob = injury_probability(state.injury_count)
@@ -262,10 +273,55 @@ def advance_injury_clocks(
 
 def merge_reports(*reports: InjuryReport) -> InjuryReport:
     merged = InjuryReport()
+    seen_new: set[int] = set()
+    unavail_by_player: dict[int, UnavailablePlayer] = {}
+
     for r in reports:
-        merged.new_injuries.extend(r.new_injuries)
-        merged.unavailable.extend(r.unavailable)
+        for e in r.new_injuries:
+            if e.player_id in seen_new:
+                continue
+            merged.new_injuries.append(e)
+            seen_new.add(e.player_id)
+        for u in r.unavailable:
+            prev = unavail_by_player.get(u.player_id)
+            if prev is None or u.games_remaining > prev.games_remaining:
+                unavail_by_player[u.player_id] = u
+
+    merged.unavailable = list(unavail_by_player.values())
     return merged
+
+
+def dedupe_report_dict(report: dict | None) -> dict | None:
+    """Collapse duplicate player rows when many games merge into one report."""
+    if not report:
+        return None
+    merged = merge_reports(InjuryReport(
+        new_injuries=[
+            InjuryEvent(
+                player_id=e["player_id"],
+                player_name=e["player_name"],
+                team_id=e["team_id"],
+                pokedex_id=e["pokedex_id"],
+                sprite_url=e["sprite_url"],
+                games_out=e["games_out"],
+                prior_injuries=0,
+            )
+            for e in report.get("new_injuries", [])
+        ],
+        unavailable=[
+            UnavailablePlayer(
+                player_id=u["player_id"],
+                player_name=u["player_name"],
+                team_id=u["team_id"],
+                pokedex_id=u["pokedex_id"],
+                sprite_url=u["sprite_url"],
+                games_remaining=u["games_remaining"],
+                reason=u.get("reason", "existing"),
+            )
+            for u in report.get("unavailable", [])
+        ],
+    ))
+    return merged.to_dict()
 
 
 def load_injury_map(
@@ -357,20 +413,23 @@ def handle_player_release(db: Session, *, player: Player, season: int) -> bool:
     ).first()
     was_injured = state is not None and state.games_remaining > 0
     clear_player_injury_data(db, player_id=player.id, season=season)
+    if was_injured:
+        player.fa_signing_blocked_season = season
+    else:
+        player.fa_signing_blocked_season = None
     return was_injured
 
 
-def apply_waiver_wire_penalty(player: Player) -> None:
-    """Halve every current stat after being cut while injured."""
-    player.cur_hp = max(1, player.cur_hp // 2)
-    player.cur_attack = max(1, player.cur_attack // 2)
-    player.cur_defense = max(1, player.cur_defense // 2)
-    player.cur_sp_attack = max(1, player.cur_sp_attack // 2)
-    player.cur_sp_defense = max(1, player.cur_sp_defense // 2)
-    player.cur_speed = max(1, player.cur_speed // 2)
-    player.bst = (
-        player.cur_hp + player.cur_attack + player.cur_defense
-        + player.cur_sp_attack + player.cur_sp_defense + player.cur_speed
+def is_fa_signable(player: Player, *, season: int) -> bool:
+    return player.fa_signing_blocked_season != season
+
+
+def fa_signable_clause(season: int):
+    """SQLAlchemy filter: FAs eligible to be signed this season."""
+    from sqlalchemy import or_
+    return or_(
+        Player.fa_signing_blocked_season.is_(None),
+        Player.fa_signing_blocked_season != season,
     )
 
 
@@ -379,8 +438,8 @@ def reset_season_injuries(db: Session, *, season: int) -> None:
     db.execute(delete(PlayerInjuryEvent).where(PlayerInjuryEvent.season == season))
     db.execute(delete(PlayerSeasonInjury).where(PlayerSeasonInjury.season == season))
     for player in db.scalars(select(Player)):
-        if player.injury_penalty_pending:
-            player.injury_penalty_pending = False
+        if player.fa_signing_blocked_season == season:
+            player.fa_signing_blocked_season = None
 
 
 def enrich_players(db: Session, players: list[Player], *, season: int | None = None) -> list[dict]:

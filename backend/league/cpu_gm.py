@@ -14,6 +14,7 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from backend.core.config import settings
+from backend.league.injuries import fa_signable_clause, handle_player_release
 from backend.league.state import get_state
 from backend.league.transactions import (
     ROSTER_MIN_AFTER_TRADE,
@@ -30,11 +31,15 @@ def _teams_worst_first(db: Session) -> list[Team]:
     return teams
 
 
-def _best_affordable_fa(db: Session, *, cap_room: int) -> Player | None:
+def _best_affordable_fa(db: Session, *, cap_room: int, season: int) -> Player | None:
     fas = list(
         db.scalars(
             select(Player)
-            .where(Player.team_id.is_(None), Player.is_retired.is_(False))
+            .where(
+                Player.team_id.is_(None),
+                Player.is_retired.is_(False),
+                fa_signable_clause(season),
+            )
             .order_by(Player.bst.desc(), Player.id.asc())
         )
     )
@@ -56,10 +61,11 @@ def _try_waiver_move(db: Session, team: Team) -> dict[str, Any] | None:
     cap_ceiling = state.bst_cap + TRADE_CAP_LEEWAY
     cap_room = cap_ceiling - _bst_total(roster_after)
 
-    fa = _best_affordable_fa(db, cap_room=cap_room)
+    fa = _best_affordable_fa(db, cap_room=cap_room, season=state.current_season)
     if fa is None:
         return None
 
+    handle_player_release(db, player=worst, season=state.current_season)
     worst.team_id = None
     fa.team_id = team.id
     db.flush()

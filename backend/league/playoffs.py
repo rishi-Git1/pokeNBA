@@ -36,6 +36,7 @@ from sqlalchemy.orm import Session
 from backend.models import Game, Player, Series, Team
 from backend.league.injuries import (
     advance_injury_clocks,
+    dedupe_report_dict,
     merge_reports,
     prepare_team_roster,
 )
@@ -241,7 +242,10 @@ def sim_round_slate(db: Session, *, rng: random.Random | None = None) -> dict:
         "slate_game": slate["slate_game"],
         "games_played": len(results),
         "results": results,
-        "injury_report": {"new_injuries": all_new, "unavailable": all_unavail},
+        "injury_report": dedupe_report_dict({
+            "new_injuries": all_new,
+            "unavailable": all_unavail,
+        }),
     }
 
 
