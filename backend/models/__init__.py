@@ -6,9 +6,10 @@ from backend.models.game import Game
 from backend.models.draft_pick import DraftPick
 from backend.models.league_state import LeagueState, Phase
 from backend.models.series import Series
-from backend.models.playoff_injury import PlayoffPlayerState
+from backend.models.player_injury import PlayerInjuryEvent, PlayerSeasonInjury
 
 __all__ = [
     "Team", "Player", "Position", "BoxScore", "Game", "DraftPick",
-    "LeagueState", "Phase", "Series", "PlayoffPlayerState",
+    "LeagueState", "Phase", "Series",
+    "PlayerSeasonInjury", "PlayerInjuryEvent",
 ]

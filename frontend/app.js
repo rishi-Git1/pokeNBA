@@ -5,7 +5,7 @@
  * Sprites come straight from PokeAPI's CDN (urls baked in by the backend).
  * ===================================================================== */
 
-import { api } from "/static/api.js?v=20260525";
+import { api, getGmMode, getUserTeamId, setGmContext } from "/static/api.js?v=20260528";
 
 // ---------------------------------------------------------------- DOM helpers
 const $  = (sel, root = document) => root.querySelector(sel);
@@ -37,6 +37,111 @@ function toast(msg, kind = "info") {
     node.style.transition = "opacity 0.3s";
     setTimeout(() => node.remove(), 320);
   }, 2400);
+}
+
+function canManageTeam(teamId) {
+  if (getGmMode() !== "team_gm") return true;
+  return Number(teamId) === Number(getUserTeamId());
+}
+
+function isTeamGmMode() {
+  return getGmMode() === "team_gm" && getUserTeamId() != null;
+}
+
+async function refreshModeUI() {
+  const select = $("#game-mode-select");
+  const teamPill = $("#user-team-pill");
+  if (!select) return;
+
+  select.value = getGmMode();
+  if (getGmMode() === "team_gm" && getUserTeamId() != null) {
+    await loadTeams();
+    const teamId = getUserTeamId();
+    teamPill.textContent = teamAbbr(teamId);
+    teamPill.title = `Open ${teamLabel(teamId)}`;
+    teamPill.classList.remove("hidden");
+    teamPill.onclick = () => { location.hash = `#/teams/${teamId}`; };
+  } else {
+    teamPill.classList.add("hidden");
+    teamPill.textContent = "";
+    teamPill.title = "";
+    teamPill.onclick = null;
+  }
+}
+
+function showCpuMovesModal(moves) {
+  if (!moves?.length) return;
+
+  const overlay = el("div", { class: "modal-overlay" });
+  const closing = () => overlay.remove();
+
+  const rows = moves.map(move => el("div", { class: "cpu-move-row" },
+    move.sim_date ? el("div", { class: "cpu-move-date" }, formatDate(move.sim_date)) : null,
+    el("div", { class: "cpu-move-team" }, `${move.team_abbr} · ${move.team_name}`),
+    el("div", { class: "cpu-move-detail" },
+      `Cut ${move.released.name} (BST ${move.released.bst}) → signed ${move.signed.name} (BST ${move.signed.bst})`,
+    ),
+  ));
+
+  const modal = el("div", { class: "card modal-dialog", style: "max-width: 560px;" },
+    el("div", { class: "modal-head" },
+      el("div", {},
+        el("div", { class: "modal-eyebrow" }, "League activity"),
+        el("h3", { class: "modal-title" }, `${moves.length} roster move${moves.length === 1 ? "" : "s"}`),
+      ),
+    ),
+    el("p", { class: "muted", style: "margin: 0;" },
+      "AI teams shuffled their rosters after the sim (worst teams acted first)."),
+    el("div", { class: "cpu-moves-list" }, ...rows),
+    el("div", { class: "modal-actions" },
+      el("button", { class: "btn btn-primary", type: "button", onClick: closing }, "Got it"),
+    ),
+  );
+
+  overlay.addEventListener("click", (e) => { if (e.target === overlay) closing(); });
+  overlay.appendChild(modal);
+  document.body.appendChild(overlay);
+}
+
+function handleRegularSeasonSimResult(r, { showMovesModal = true } = {}) {
+  if (r?.transition?.transition === "regular_season -> playoffs") {
+    toast("Regular season complete — playoffs are set!", "success");
+  } else if (r?.games_played) {
+    toast(`Played ${r.games_played} games on ${formatDate(r.sim_date)}`, "success");
+  }
+  if (r?.injury_report) {
+    notifyPlayoffInjuries(
+      r.injury_report,
+      r?.games_played ? `${r.games_played} games · injuries` : null,
+    );
+  }
+  if (showMovesModal && r?.cpu_moves?.length) {
+    showCpuMovesModal(r.cpu_moves);
+  }
+  return r?.cpu_moves || [];
+}
+
+async function onGameModeChange(nextMode) {
+  if (nextMode === getGmMode() && (nextMode === "league_gm" || getUserTeamId() != null)) {
+    await refreshModeUI();
+    return;
+  }
+
+  if (nextMode === "team_gm") {
+    const teams = await loadTeams();
+    const teamId = await pickTeam(teams, "Which team do you want to run?");
+    if (teamId == null) {
+      $("#game-mode-select").value = getGmMode();
+      return;
+    }
+    setGmContext("team_gm", teamId);
+    toast(`Team GM · ${teamAbbr(teamId)}`, "success");
+  } else {
+    setGmContext("league_gm", null);
+    toast("League GM mode", "success");
+  }
+  await refreshModeUI();
+  router();
 }
 
 // ----------------------------------------------------------------- caches
@@ -97,15 +202,31 @@ function safeImg(url, alt = "", cls = "") {
 function spriteImg(url, alt = "") { return safeImg(url, alt); }
 
 function playerTile(p, opts = {}) {
+  const injuryBadge = p.injury?.is_injured
+    ? el("button", {
+        class: "injury-badge",
+        type: "button",
+        title: "View injury history",
+        onClick: (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          showInjuryHistoryModal(p.id, p.name);
+        },
+      }, `OUT ${p.injury.games_remaining}G`)
+    : null;
+
   const tile = el("a",
     {
-      class: "player-tile",
+      class: "player-tile" + (p.injury?.is_injured ? " player-tile-injured" : ""),
       href: `#/players/${p.id}`,
       title: `${p.name} · ${p.position} · BST ${p.bst} · ${p.badge}`,
     },
     el("div", { class: "sprite" }, spriteImg(p.sprite_url, p.name)),
     el("div", { class: "meta" },
-      el("div", { class: "name" }, p.name),
+      el("div", { class: "name" },
+        p.name,
+        injuryBadge,
+      ),
       el("div", { class: "sub" },
         el("span", { class: "pos-tag" }, p.position),
         el("span", { class: "bst" }, `BST ${p.bst}`),
@@ -115,6 +236,73 @@ function playerTile(p, opts = {}) {
     opts.right ? opts.right : null,
   );
   return tile;
+}
+
+async function showInjuryHistoryModal(playerId, playerName = "") {
+  let profile;
+  try {
+    profile = await api.playerInjuries(playerId);
+  } catch (err) {
+    toast(err.message, "error");
+    return;
+  }
+
+  const overlay = el("div", { class: "modal-overlay" });
+  const closing = () => overlay.remove();
+
+  const current = profile.current || {};
+  const events = profile.events || [];
+  const name = playerName || `Player ${playerId}`;
+
+  const currentBlock = current.is_injured
+    ? el("div", { class: "card", style: "padding: 0.75rem 1rem; margin-bottom: 0.75rem;" },
+        el("div", { class: "muted", style: "font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em;" }, "Current injury"),
+        el("div", { style: "font-weight: 700; margin-top: 0.25rem;" },
+          `${current.games_remaining} game${current.games_remaining === 1 ? "" : "s"} remaining`,
+          current.stint_games_total
+            ? el("span", { class: "muted" }, ` · ${current.stint_games_total}-game stint`)
+            : null,
+        ),
+        el("div", { class: "muted", style: "font-size: 0.85rem; margin-top: 0.2rem;" },
+          `${current.season_injury_count} injury event${current.season_injury_count === 1 ? "" : "s"} this season`,
+        ),
+      )
+    : el("div", { class: "muted", style: "margin-bottom: 0.75rem;" },
+        events.length
+          ? `Healthy now · ${current.season_injury_count || 0} injury event${current.season_injury_count === 1 ? "" : "s"} this season`
+          : "No injuries recorded this season.",
+      );
+
+  const eventRows = events.length
+    ? el("div", { class: "cpu-moves-list" },
+        ...events.map(ev => el("div", { class: "cpu-move-row" },
+          el("div", { class: "cpu-move-date" }, `${formatDate(ev.event_date)} · ${ev.phase.replace("_", " ")}`),
+          el("div", { class: "cpu-move-team" }, ev.event_type === "injured" ? "Injured" : ev.event_type === "recovered" ? "Recovered" : "Cleared"),
+          ev.event_type === "injured"
+            ? el("div", { class: "cpu-move-detail muted" }, `Expected out ${ev.games_out} game${ev.games_out === 1 ? "" : "s"}`)
+            : null,
+        )),
+      )
+    : el("div", { class: "muted" }, "No logged injury events.");
+
+  const modal = el("div", { class: "card modal-dialog", style: "max-width: 520px;" },
+    el("div", { class: "modal-head" },
+      el("div", {},
+        el("div", { class: "modal-eyebrow" }, `Season ${profile.season}`),
+        el("h3", { class: "modal-title" }, `${name} · Injuries`),
+      ),
+    ),
+    currentBlock,
+    el("div", { class: "injury-section-title" }, "Season log"),
+    eventRows,
+    el("div", { class: "modal-actions" },
+      el("button", { class: "btn btn-primary", type: "button", onClick: closing }, "Close"),
+    ),
+  );
+
+  overlay.addEventListener("click", (e) => { if (e.target === overlay) closing(); });
+  overlay.appendChild(modal);
+  document.body.appendChild(overlay);
 }
 
 // =====================================================================
@@ -144,6 +332,7 @@ async function router() {
   await loadTeams();
   // Refresh phase-aware topbar before rendering the view (cheap; cached).
   await refreshPhaseUI();
+  await refreshModeUI();
 
   // highlight nav
   $$(".nav a").forEach(a => a.classList.remove("active"));
@@ -507,6 +696,13 @@ async function viewFreeAgents(view) {
 
   view.appendChild(capBannerCard(capCfg));
 
+  if (isTeamGmMode()) {
+    view.appendChild(el("div", { class: "card", style: "padding: 0.75rem 1rem; margin-bottom: 1rem;" },
+      el("span", { class: "muted" }, `Team GM · signing to `),
+      el("strong", {}, teamLabel(getUserTeamId())),
+    ));
+  }
+
   if (fas.length === 0) {
     view.appendChild(el("div", { class: "empty" }, "No free agents available."));
     return;
@@ -519,14 +715,17 @@ async function viewFreeAgents(view) {
     const sign = el("button", { class: "btn btn-sm btn-primary", onClick: async (e) => {
       e.preventDefault();
       e.stopPropagation();
-      const teamId = await pickTeam(teams, "Sign to which team?");
-      if (teamId == null) return;
+      let teamId = getUserTeamId();
+      if (!isTeamGmMode()) {
+        teamId = await pickTeam(teams, "Sign to which team?");
+        if (teamId == null) return;
+      }
       try {
         await api.sign(teamId, p.id);
         toast(`Signed ${p.name} to ${teamAbbr(teamId)}`, "success");
         router();
       } catch (err) { toast(err.message, "error"); }
-    } }, "Sign");
+    } }, isTeamGmMode() ? `Sign to ${teamAbbr(getUserTeamId())}` : "Sign");
     const tile = playerTile(p, { right: sign });
     grid.appendChild(tile);
   });
@@ -611,11 +810,19 @@ async function viewTeam(view, teamId) {
 
   view.appendChild(buildTeamHeader(team, capCfg));
 
+  if (isTeamGmMode() && !canManageTeam(team.id)) {
+    view.appendChild(el("div", { class: "card", style: "padding: 0.75rem 1rem; margin-bottom: 1rem;" },
+      el("span", { class: "muted" }, "View-only in Team GM mode. You control "),
+      el("strong", {}, teamLabel(getUserTeamId())),
+      el("span", { class: "muted" }, "."),
+    ));
+  }
+
   const rosterCard = el("div", { class: "card" },
     el("div", { class: "card-header" }, el("div", { class: "card-title" }, "Roster")),
     el("div", { class: "grid grid-3" },
       ...team.roster.map(p => playerTile(p, {
-        right: el("button", { class: "btn btn-sm", onClick: async (e) => {
+        right: canManageTeam(team.id) ? el("button", { class: "btn btn-sm", onClick: async (e) => {
           e.preventDefault(); e.stopPropagation();
           const confirmed = await confirmRelease(team, p);
           if (!confirmed) return;
@@ -624,7 +831,7 @@ async function viewTeam(view, teamId) {
             toast(`Released ${p.name}`, "success");
             router();
           } catch (err) { toast(err.message, "error"); }
-        } }, "Cut"),
+        } }, "Cut") : null,
       })),
     ),
   );
@@ -736,12 +943,41 @@ function projectionRow(label, value) {
 // Player detail
 // =====================================================================
 async function viewPlayer(view, playerId) {
-  const p = await api.player(playerId);
+  const [p, injuryProfile] = await Promise.all([
+    api.player(playerId),
+    api.playerInjuries(playerId).catch(() => null),
+  ]);
   const teamLink = p.team_id != null ? el("a", { href: `#/teams/${p.team_id}` }, teamLabel(p.team_id)) : el("span", { class: "muted" }, "Free Agent");
 
   view.appendChild(el("h1", { class: "page-title" }, p.name,
     el("span", { class: "page-subtitle" }, ` · ${p.species} #${p.pokedex_id}`),
   ));
+
+  if (injuryProfile?.current?.is_injured) {
+    view.appendChild(el("div", { class: "card injury-report", style: "padding: 0.75rem 1rem; margin-bottom: 1rem;" },
+      el("div", { class: "row-spaced" },
+        el("div", {},
+          el("div", { class: "muted", style: "font-size: 0.78rem; text-transform: uppercase;" }, "Injured"),
+          el("div", { style: "font-weight: 700;" },
+            `Out ${injuryProfile.current.games_remaining} more game${injuryProfile.current.games_remaining === 1 ? "" : "s"}`,
+          ),
+        ),
+        el("button", {
+          class: "btn btn-sm btn-ghost",
+          type: "button",
+          onClick: () => showInjuryHistoryModal(playerId, p.name),
+        }, "Injury history"),
+      ),
+    ));
+  } else if (injuryProfile?.events?.length) {
+    view.appendChild(el("div", { style: "margin-bottom: 1rem;" },
+      el("button", {
+        class: "btn btn-sm btn-ghost",
+        type: "button",
+        onClick: () => showInjuryHistoryModal(playerId, p.name),
+      }, "View injury history"),
+    ));
+  }
 
   const detail = el("section", { class: "player-detail" },
     el("div", { class: "artwork" },
@@ -1283,21 +1519,24 @@ async function refreshPhaseUI() {
     primary.title = "Sim one game day";
     primary.onclick = () => simAction(primary, async () => {
       const r = await api.simDay();
-      if (r?.transition?.transition === "regular_season -> playoffs") {
-        toast("Regular season complete — playoffs are set!", "success");
-      } else if (r?.games_played) {
-        toast(`Played ${r.games_played} games on ${formatDate(r.sim_date)}`, "success");
-      }
+      handleRegularSeasonSimResult(r);
     });
     secondary.textContent = "Sim Week";
     secondary.title = "Sim 7 game days (or until the regular season ends)";
     secondary.onclick = () => simAction(secondary, async () => {
       let total = 0;
       let lastTransition = null;
+      const weekMoves = [];
+      const weekInjuries = { new_injuries: [], unavailable: [] };
       for (let i = 0; i < 7; i++) {
         let r;
         try { r = await api.simDay(); } catch (e) { break; }
         total += r.games_played || 0;
+        if (r?.cpu_moves?.length) weekMoves.push(...r.cpu_moves);
+        if (r?.injury_report) {
+          weekInjuries.new_injuries.push(...(r.injury_report.new_injuries || []));
+          weekInjuries.unavailable.push(...(r.injury_report.unavailable || []));
+        }
         invalidateState();
         if (r?.transition) { lastTransition = r.transition; break; }
       }
@@ -1306,6 +1545,10 @@ async function refreshPhaseUI() {
       } else {
         toast(`Simmed week — ${total} games`, "success");
       }
+      if (weekInjuries.new_injuries.length || weekInjuries.unavailable.length) {
+        notifyPlayoffInjuries(weekInjuries, `Week sim · ${total} games`);
+      }
+      if (weekMoves.length) showCpuMovesModal(weekMoves);
     });
   } else if (state.phase === "playoffs") {
     const slateNum = await fetchPlayoffSlateNum();
@@ -1403,6 +1646,13 @@ $("#reset-btn").addEventListener("click", async () => {
     btn.innerHTML = "Reset";
   }
 });
+
+const modeSelect = $("#game-mode-select");
+if (modeSelect) {
+  modeSelect.addEventListener("change", async (e) => {
+    await onGameModeChange(e.target.value);
+  });
+}
 
 async function confirmReset() {
   return new Promise((resolve) => {

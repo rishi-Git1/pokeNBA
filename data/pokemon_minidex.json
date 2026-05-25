@@ -63,7 +63,7 @@
         "sp_defense": 80,
         "speed": 70
       },
-      "primary_ability": "Compound-Eyes"
+      "primary_ability": "Compound Eyes"
     },
     {
       "id": 15,
@@ -89,7 +89,7 @@
         "sp_defense": 70,
         "speed": 101
       },
-      "primary_ability": "Keen-Eye"
+      "primary_ability": "Keen Eye"
     },
     {
       "id": 20,
@@ -102,7 +102,7 @@
         "sp_defense": 70,
         "speed": 97
       },
-      "primary_ability": "Run-Away"
+      "primary_ability": "Run Away"
     },
     {
       "id": 22,
@@ -115,7 +115,7 @@
         "sp_defense": 61,
         "speed": 100
       },
-      "primary_ability": "Keen-Eye"
+      "primary_ability": "Keen Eye"
     },
     {
       "id": 24,
@@ -154,7 +154,7 @@
         "sp_defense": 55,
         "speed": 65
       },
-      "primary_ability": "Sand-Veil"
+      "primary_ability": "Sand Veil"
     },
     {
       "id": 31,
@@ -167,7 +167,7 @@
         "sp_defense": 85,
         "speed": 76
       },
-      "primary_ability": "Poison-Point"
+      "primary_ability": "Poison Point"
     },
     {
       "id": 34,
@@ -180,7 +180,7 @@
         "sp_defense": 75,
         "speed": 85
       },
-      "primary_ability": "Poison-Point"
+      "primary_ability": "Poison Point"
     },
     {
       "id": 36,
@@ -193,7 +193,7 @@
         "sp_defense": 90,
         "speed": 60
       },
-      "primary_ability": "Cute-Charm"
+      "primary_ability": "Cute Charm"
     },
     {
       "id": 38,
@@ -206,7 +206,7 @@
         "sp_defense": 100,
         "speed": 100
       },
-      "primary_ability": "Flash-Fire"
+      "primary_ability": "Flash Fire"
     },
     {
       "id": 40,
@@ -219,7 +219,7 @@
         "sp_defense": 50,
         "speed": 45
       },
-      "primary_ability": "Cute-Charm"
+      "primary_ability": "Cute Charm"
     },
     {
       "id": 45,
@@ -245,7 +245,7 @@
         "sp_defense": 80,
         "speed": 30
       },
-      "primary_ability": "Effect-Spore"
+      "primary_ability": "Effect Spore"
     },
     {
       "id": 49,
@@ -258,7 +258,7 @@
         "sp_defense": 75,
         "speed": 90
       },
-      "primary_ability": "Shield-Dust"
+      "primary_ability": "Shield Dust"
     },
     {
       "id": 51,
@@ -271,7 +271,7 @@
         "sp_defense": 70,
         "speed": 120
       },
-      "primary_ability": "Sand-Veil"
+      "primary_ability": "Sand Veil"
     },
     {
       "id": 53,
@@ -323,7 +323,7 @@
         "sp_defense": 90,
         "speed": 70
       },
-      "primary_ability": "Water-Absorb"
+      "primary_ability": "Water Absorb"
     },
     {
       "id": 65,
@@ -375,7 +375,7 @@
         "sp_defense": 120,
         "speed": 100
       },
-      "primary_ability": "Clear-Body"
+      "primary_ability": "Clear Body"
     },
     {
       "id": 76,
@@ -388,7 +388,7 @@
         "sp_defense": 65,
         "speed": 45
       },
-      "primary_ability": "Rock-Head"
+      "primary_ability": "Rock Head"
     },
     {
       "id": 78,
@@ -401,7 +401,7 @@
         "sp_defense": 80,
         "speed": 105
       },
-      "primary_ability": "Run-Away"
+      "primary_ability": "Run Away"
     },
     {
       "id": 80,
@@ -427,7 +427,7 @@
         "sp_defense": 60,
         "speed": 110
       },
-      "primary_ability": "Run-Away"
+      "primary_ability": "Run Away"
     },
     {
       "id": 87,
@@ -440,7 +440,7 @@
         "sp_defense": 95,
         "speed": 70
       },
-      "primary_ability": "Thick-Fat"
+      "primary_ability": "Thick Fat"
     },
     {
       "id": 89,
@@ -466,7 +466,7 @@
         "sp_defense": 45,
         "speed": 70
       },
-      "primary_ability": "Shell-Armor"
+      "primary_ability": "Shell Armor"
     },
     {
       "id": 94,
@@ -479,7 +479,7 @@
         "sp_defense": 75,
         "speed": 110
       },
-      "primary_ability": "Cursed-Body"
+      "primary_ability": "Cursed Body"
     },
     {
       "id": 97,
@@ -505,7 +505,7 @@
         "sp_defense": 50,
         "speed": 75
       },
-      "primary_ability": "Hyper-Cutter"
+      "primary_ability": "Hyper Cutter"
     },
     {
       "id": 101,
@@ -544,7 +544,7 @@
         "sp_defense": 80,
         "speed": 45
       },
-      "primary_ability": "Rock-Head"
+      "primary_ability": "Rock Head"
     },
     {
       "id": 106,
@@ -570,7 +570,7 @@
         "sp_defense": 110,
         "speed": 76
       },
-      "primary_ability": "Keen-Eye"
+      "primary_ability": "Keen Eye"
     },
     {
       "id": 110,
@@ -596,7 +596,7 @@
         "sp_defense": 80,
         "speed": 90
       },
-      "primary_ability": "Early-Bird"
+      "primary_ability": "Early Bird"
     },
     {
       "id": 119,
@@ -609,7 +609,7 @@
         "sp_defense": 80,
         "speed": 68
       },
-      "primary_ability": "Swift-Swim"
+      "primary_ability": "Swift Swim"
     },
     {
       "id": 121,
@@ -648,7 +648,7 @@
         "sp_defense": 70,
         "speed": 85
       },
-      "primary_ability": "Hyper-Cutter"
+      "primary_ability": "Hyper Cutter"
     },
     {
       "id": 128,
@@ -687,7 +687,7 @@
         "sp_defense": 95,
         "speed": 60
       },
-      "primary_ability": "Water-Absorb"
+      "primary_ability": "Water Absorb"
     },
     {
       "id": 132,
@@ -713,7 +713,7 @@
         "sp_defense": 95,
         "speed": 65
       },
-      "primary_ability": "Water-Absorb"
+      "primary_ability": "Water Absorb"
     },
     {
       "id": 135,
@@ -726,7 +726,7 @@
         "sp_defense": 95,
         "speed": 130
       },
-      "primary_ability": "Volt-Absorb"
+      "primary_ability": "Volt Absorb"
     },
     {
       "id": 136,
@@ -739,7 +739,7 @@
         "sp_defense": 110,
         "speed": 65
       },
-      "primary_ability": "Flash-Fire"
+      "primary_ability": "Flash Fire"
     },
     {
       "id": 139,
@@ -752,7 +752,7 @@
         "sp_defense": 70,
         "speed": 55
       },
-      "primary_ability": "Swift-Swim"
+      "primary_ability": "Swift Swim"
     },
     {
       "id": 141,
@@ -765,7 +765,7 @@
         "sp_defense": 70,
         "speed": 80
       },
-      "primary_ability": "Swift-Swim"
+      "primary_ability": "Swift Swim"
     },
     {
       "id": 142,
@@ -778,7 +778,7 @@
         "sp_defense": 75,
         "speed": 130
       },
-      "primary_ability": "Rock-Head"
+      "primary_ability": "Rock Head"
     },
     {
       "id": 143,
@@ -843,7 +843,7 @@
         "sp_defense": 100,
         "speed": 80
       },
-      "primary_ability": "Inner-Focus"
+      "primary_ability": "Inner Focus"
     },
     {
       "id": 150,
@@ -921,7 +921,7 @@
         "sp_defense": 55,
         "speed": 90
       },
-      "primary_ability": "Run-Away"
+      "primary_ability": "Run Away"
     },
     {
       "id": 164,
@@ -973,7 +973,7 @@
         "sp_defense": 80,
         "speed": 130
       },
-      "primary_ability": "Inner-Focus"
+      "primary_ability": "Inner Focus"
     },
     {
       "id": 171,
@@ -986,7 +986,7 @@
         "sp_defense": 76,
         "speed": 67
       },
-      "primary_ability": "Volt-Absorb"
+      "primary_ability": "Volt Absorb"
     },
     {
       "id": 178,
@@ -1038,7 +1038,7 @@
         "sp_defense": 80,
         "speed": 50
       },
-      "primary_ability": "Thick-Fat"
+      "primary_ability": "Thick Fat"
     },
     {
       "id": 185,
@@ -1064,7 +1064,7 @@
         "sp_defense": 100,
         "speed": 70
       },
-      "primary_ability": "Water-Absorb"
+      "primary_ability": "Water Absorb"
     },
     {
       "id": 189,
@@ -1168,7 +1168,7 @@
         "sp_defense": 58,
         "speed": 33
       },
-      "primary_ability": "Shadow-Tag"
+      "primary_ability": "Shadow Tag"
     },
     {
       "id": 205,
@@ -1194,7 +1194,7 @@
         "sp_defense": 65,
         "speed": 30
       },
-      "primary_ability": "Rock-Head"
+      "primary_ability": "Rock Head"
     },
     {
       "id": 210,
@@ -1259,7 +1259,7 @@
         "sp_defense": 80,
         "speed": 30
       },
-      "primary_ability": "Magma-Armor"
+      "primary_ability": "Magma Armor"
     },
     {
       "id": 224,
@@ -1272,7 +1272,7 @@
         "sp_defense": 75,
         "speed": 45
       },
-      "primary_ability": "Suction-Cups"
+      "primary_ability": "Suction Cups"
     },
     {
       "id": 225,
@@ -1285,7 +1285,7 @@
         "sp_defense": 45,
         "speed": 75
       },
-      "primary_ability": "Vital-Spirit"
+      "primary_ability": "Vital Spirit"
     },
     {
       "id": 226,
@@ -1298,7 +1298,7 @@
         "sp_defense": 140,
         "speed": 70
       },
-      "primary_ability": "Swift-Swim"
+      "primary_ability": "Swift Swim"
     },
     {
       "id": 227,
@@ -1311,7 +1311,7 @@
         "sp_defense": 70,
         "speed": 70
       },
-      "primary_ability": "Keen-Eye"
+      "primary_ability": "Keen Eye"
     },
     {
       "id": 229,
@@ -1324,7 +1324,7 @@
         "sp_defense": 80,
         "speed": 95
       },
-      "primary_ability": "Early-Bird"
+      "primary_ability": "Early Bird"
     },
     {
       "id": 230,
@@ -1337,7 +1337,7 @@
         "sp_defense": 95,
         "speed": 85
       },
-      "primary_ability": "Swift-Swim"
+      "primary_ability": "Swift Swim"
     },
     {
       "id": 232,
@@ -1363,7 +1363,7 @@
         "sp_defense": 45,
         "speed": 75
       },
-      "primary_ability": "Own-Tempo"
+      "primary_ability": "Own Tempo"
     },
     {
       "id": 237,
@@ -1389,7 +1389,7 @@
         "sp_defense": 70,
         "speed": 100
       },
-      "primary_ability": "Thick-Fat"
+      "primary_ability": "Thick Fat"
     },
     {
       "id": 242,
@@ -1402,7 +1402,7 @@
         "sp_defense": 135,
         "speed": 55
       },
-      "primary_ability": "Natural-Cure"
+      "primary_ability": "Natural Cure"
     },
     {
       "id": 243,
@@ -1454,7 +1454,7 @@
         "sp_defense": 100,
         "speed": 61
       },
-      "primary_ability": "Sand-Stream"
+      "primary_ability": "Sand Stream"
     },
     {
       "id": 249,
@@ -1493,7 +1493,7 @@
         "sp_defense": 100,
         "speed": 100
       },
-      "primary_ability": "Natural-Cure"
+      "primary_ability": "Natural Cure"
     },
     {
       "id": 254,
@@ -1571,7 +1571,7 @@
         "sp_defense": 90,
         "speed": 65
       },
-      "primary_ability": "Shield-Dust"
+      "primary_ability": "Shield Dust"
     },
     {
       "id": 272,
@@ -1584,7 +1584,7 @@
         "sp_defense": 100,
         "speed": 70
       },
-      "primary_ability": "Swift-Swim"
+      "primary_ability": "Swift Swim"
     },
     {
       "id": 275,
@@ -1623,7 +1623,7 @@
         "sp_defense": 70,
         "speed": 65
       },
-      "primary_ability": "Keen-Eye"
+      "primary_ability": "Keen Eye"
     },
     {
       "id": 282,
@@ -1662,7 +1662,7 @@
         "sp_defense": 60,
         "speed": 70
       },
-      "primary_ability": "Effect-Spore"
+      "primary_ability": "Effect Spore"
     },
     {
       "id": 289,
@@ -1688,7 +1688,7 @@
         "sp_defense": 50,
         "speed": 160
       },
-      "primary_ability": "Speed-Boost"
+      "primary_ability": "Speed Boost"
     },
     {
       "id": 292,
@@ -1701,7 +1701,7 @@
         "sp_defense": 30,
         "speed": 40
       },
-      "primary_ability": "Wonder-Guard"
+      "primary_ability": "Wonder Guard"
     },
     {
       "id": 295,
@@ -1727,7 +1727,7 @@
         "sp_defense": 60,
         "speed": 50
       },
-      "primary_ability": "Thick-Fat"
+      "primary_ability": "Thick Fat"
     },
     {
       "id": 301,
@@ -1740,7 +1740,7 @@
         "sp_defense": 55,
         "speed": 90
       },
-      "primary_ability": "Cute-Charm"
+      "primary_ability": "Cute Charm"
     },
     {
       "id": 302,
@@ -1753,7 +1753,7 @@
         "sp_defense": 65,
         "speed": 50
       },
-      "primary_ability": "Keen-Eye"
+      "primary_ability": "Keen Eye"
     },
     {
       "id": 303,
@@ -1766,7 +1766,7 @@
         "sp_defense": 55,
         "speed": 50
       },
-      "primary_ability": "Hyper-Cutter"
+      "primary_ability": "Hyper Cutter"
     },
     {
       "id": 306,
@@ -1792,7 +1792,7 @@
         "sp_defense": 75,
         "speed": 80
       },
-      "primary_ability": "Pure-Power"
+      "primary_ability": "Pure Power"
     },
     {
       "id": 310,
@@ -1870,7 +1870,7 @@
         "sp_defense": 83,
         "speed": 55
       },
-      "primary_ability": "Liquid-Ooze"
+      "primary_ability": "Liquid Ooze"
     },
     {
       "id": 319,
@@ -1883,7 +1883,7 @@
         "sp_defense": 40,
         "speed": 95
       },
-      "primary_ability": "Rough-Skin"
+      "primary_ability": "Rough Skin"
     },
     {
       "id": 321,
@@ -1896,7 +1896,7 @@
         "sp_defense": 45,
         "speed": 60
       },
-      "primary_ability": "Water-Veil"
+      "primary_ability": "Water Veil"
     },
     {
       "id": 323,
@@ -1909,7 +1909,7 @@
         "sp_defense": 75,
         "speed": 40
       },
-      "primary_ability": "Magma-Armor"
+      "primary_ability": "Magma Armor"
     },
     {
       "id": 324,
@@ -1922,7 +1922,7 @@
         "sp_defense": 70,
         "speed": 20
       },
-      "primary_ability": "White-Smoke"
+      "primary_ability": "White Smoke"
     },
     {
       "id": 326,
@@ -1935,7 +1935,7 @@
         "sp_defense": 110,
         "speed": 80
       },
-      "primary_ability": "Thick-Fat"
+      "primary_ability": "Thick Fat"
     },
     {
       "id": 327,
@@ -1948,7 +1948,7 @@
         "sp_defense": 60,
         "speed": 60
       },
-      "primary_ability": "Own-Tempo"
+      "primary_ability": "Own Tempo"
     },
     {
       "id": 330,
@@ -1974,7 +1974,7 @@
         "sp_defense": 60,
         "speed": 55
       },
-      "primary_ability": "Sand-Veil"
+      "primary_ability": "Sand Veil"
     },
     {
       "id": 334,
@@ -1987,7 +1987,7 @@
         "sp_defense": 105,
         "speed": 80
       },
-      "primary_ability": "Natural-Cure"
+      "primary_ability": "Natural Cure"
     },
     {
       "id": 335,
@@ -2013,7 +2013,7 @@
         "sp_defense": 60,
         "speed": 65
       },
-      "primary_ability": "Shed-Skin"
+      "primary_ability": "Shed Skin"
     },
     {
       "id": 337,
@@ -2065,7 +2065,7 @@
         "sp_defense": 55,
         "speed": 55
       },
-      "primary_ability": "Hyper-Cutter"
+      "primary_ability": "Hyper Cutter"
     },
     {
       "id": 344,
@@ -2091,7 +2091,7 @@
         "sp_defense": 107,
         "speed": 43
       },
-      "primary_ability": "Suction-Cups"
+      "primary_ability": "Suction Cups"
     },
     {
       "id": 348,
@@ -2104,7 +2104,7 @@
         "sp_defense": 80,
         "speed": 45
       },
-      "primary_ability": "Battle-Armor"
+      "primary_ability": "Battle Armor"
     },
     {
       "id": 350,
@@ -2117,7 +2117,7 @@
         "sp_defense": 125,
         "speed": 81
       },
-      "primary_ability": "Marvel-Scale"
+      "primary_ability": "Marvel Scale"
     },
     {
       "id": 351,
@@ -2143,7 +2143,7 @@
         "sp_defense": 120,
         "speed": 40
       },
-      "primary_ability": "Color-Change"
+      "primary_ability": "Color Change"
     },
     {
       "id": 354,
@@ -2208,7 +2208,7 @@
         "sp_defense": 80,
         "speed": 80
       },
-      "primary_ability": "Inner-Focus"
+      "primary_ability": "Inner Focus"
     },
     {
       "id": 365,
@@ -2221,7 +2221,7 @@
         "sp_defense": 90,
         "speed": 65
       },
-      "primary_ability": "Thick-Fat"
+      "primary_ability": "Thick Fat"
     },
     {
       "id": 367,
@@ -2234,7 +2234,7 @@
         "sp_defense": 75,
         "speed": 52
       },
-      "primary_ability": "Swift-Swim"
+      "primary_ability": "Swift Swim"
     },
     {
       "id": 368,
@@ -2247,7 +2247,7 @@
         "sp_defense": 75,
         "speed": 52
       },
-      "primary_ability": "Swift-Swim"
+      "primary_ability": "Swift Swim"
     },
     {
       "id": 369,
@@ -2260,7 +2260,7 @@
         "sp_defense": 65,
         "speed": 55
       },
-      "primary_ability": "Swift-Swim"
+      "primary_ability": "Swift Swim"
     },
     {
       "id": 370,
@@ -2273,7 +2273,7 @@
         "sp_defense": 65,
         "speed": 97
       },
-      "primary_ability": "Swift-Swim"
+      "primary_ability": "Swift Swim"
     },
     {
       "id": 373,
@@ -2299,7 +2299,7 @@
         "sp_defense": 90,
         "speed": 70
       },
-      "primary_ability": "Clear-Body"
+      "primary_ability": "Clear Body"
     },
     {
       "id": 377,
@@ -2312,7 +2312,7 @@
         "sp_defense": 100,
         "speed": 50
       },
-      "primary_ability": "Clear-Body"
+      "primary_ability": "Clear Body"
     },
     {
       "id": 378,
@@ -2325,7 +2325,7 @@
         "sp_defense": 200,
         "speed": 50
       },
-      "primary_ability": "Clear-Body"
+      "primary_ability": "Clear Body"
     },
     {
       "id": 379,
@@ -2338,7 +2338,7 @@
         "sp_defense": 150,
         "speed": 50
       },
-      "primary_ability": "Clear-Body"
+      "primary_ability": "Clear Body"
     },
     {
       "id": 380,
@@ -2403,7 +2403,7 @@
         "sp_defense": 90,
         "speed": 95
       },
-      "primary_ability": "Air-Lock"
+      "primary_ability": "Air Lock"
     },
     {
       "id": 385,
@@ -2416,7 +2416,7 @@
         "sp_defense": 100,
         "speed": 100
       },
-      "primary_ability": "Serene-Grace"
+      "primary_ability": "Serene Grace"
     },
     {
       "id": 386,
@@ -2533,7 +2533,7 @@
         "sp_defense": 105,
         "speed": 90
       },
-      "primary_ability": "Natural-Cure"
+      "primary_ability": "Natural Cure"
     },
     {
       "id": 409,
@@ -2546,7 +2546,7 @@
         "sp_defense": 50,
         "speed": 58
       },
-      "primary_ability": "Mold-Breaker"
+      "primary_ability": "Mold Breaker"
     },
     {
       "id": 411,
@@ -2611,7 +2611,7 @@
         "sp_defense": 90,
         "speed": 95
       },
-      "primary_ability": "Run-Away"
+      "primary_ability": "Run Away"
     },
     {
       "id": 419,
@@ -2624,7 +2624,7 @@
         "sp_defense": 50,
         "speed": 115
       },
-      "primary_ability": "Swift-Swim"
+      "primary_ability": "Swift Swim"
     },
     {
       "id": 421,
@@ -2637,7 +2637,7 @@
         "sp_defense": 78,
         "speed": 85
       },
-      "primary_ability": "Flower-Gift"
+      "primary_ability": "Flower Gift"
     },
     {
       "id": 423,
@@ -2650,7 +2650,7 @@
         "sp_defense": 82,
         "speed": 39
       },
-      "primary_ability": "Sticky-Hold"
+      "primary_ability": "Sticky Hold"
     },
     {
       "id": 424,
@@ -2689,7 +2689,7 @@
         "sp_defense": 96,
         "speed": 105
       },
-      "primary_ability": "Cute-Charm"
+      "primary_ability": "Cute Charm"
     },
     {
       "id": 429,
@@ -2728,7 +2728,7 @@
         "sp_defense": 59,
         "speed": 112
       },
-      "primary_ability": "Thick-Fat"
+      "primary_ability": "Thick Fat"
     },
     {
       "id": 435,
@@ -2767,7 +2767,7 @@
         "sp_defense": 42,
         "speed": 91
       },
-      "primary_ability": "Keen-Eye"
+      "primary_ability": "Keen Eye"
     },
     {
       "id": 442,
@@ -2793,7 +2793,7 @@
         "sp_defense": 85,
         "speed": 102
       },
-      "primary_ability": "Sand-Veil"
+      "primary_ability": "Sand Veil"
     },
     {
       "id": 448,
@@ -2819,7 +2819,7 @@
         "sp_defense": 72,
         "speed": 47
       },
-      "primary_ability": "Sand-Stream"
+      "primary_ability": "Sand Stream"
     },
     {
       "id": 452,
@@ -2832,7 +2832,7 @@
         "sp_defense": 75,
         "speed": 95
       },
-      "primary_ability": "Battle-Armor"
+      "primary_ability": "Battle Armor"
     },
     {
       "id": 454,
@@ -2871,7 +2871,7 @@
         "sp_defense": 86,
         "speed": 91
       },
-      "primary_ability": "Swift-Swim"
+      "primary_ability": "Swift Swim"
     },
     {
       "id": 460,
@@ -2884,7 +2884,7 @@
         "sp_defense": 85,
         "speed": 60
       },
-      "primary_ability": "Snow-Warning"
+      "primary_ability": "Snow Warning"
     },
     {
       "id": 461,
@@ -2910,7 +2910,7 @@
         "sp_defense": 90,
         "speed": 60
       },
-      "primary_ability": "Magnet-Pull"
+      "primary_ability": "Magnet Pull"
     },
     {
       "id": 463,
@@ -2923,7 +2923,7 @@
         "sp_defense": 95,
         "speed": 50
       },
-      "primary_ability": "Own-Tempo"
+      "primary_ability": "Own Tempo"
     },
     {
       "id": 464,
@@ -2936,7 +2936,7 @@
         "sp_defense": 55,
         "speed": 40
       },
-      "primary_ability": "Lightning-Rod"
+      "primary_ability": "Lightning Rod"
     },
     {
       "id": 465,
@@ -2962,7 +2962,7 @@
         "sp_defense": 85,
         "speed": 95
       },
-      "primary_ability": "Motor-Drive"
+      "primary_ability": "Motor Drive"
     },
     {
       "id": 467,
@@ -2975,7 +2975,7 @@
         "sp_defense": 95,
         "speed": 83
       },
-      "primary_ability": "Flame-Body"
+      "primary_ability": "Flame Body"
     },
     {
       "id": 468,
@@ -3001,7 +3001,7 @@
         "sp_defense": 56,
         "speed": 95
       },
-      "primary_ability": "Speed-Boost"
+      "primary_ability": "Speed Boost"
     },
     {
       "id": 470,
@@ -3014,7 +3014,7 @@
         "sp_defense": 65,
         "speed": 95
       },
-      "primary_ability": "Leaf-Guard"
+      "primary_ability": "Leaf Guard"
     },
     {
       "id": 471,
@@ -3027,7 +3027,7 @@
         "sp_defense": 95,
         "speed": 65
       },
-      "primary_ability": "Snow-Cloak"
+      "primary_ability": "Snow Cloak"
     },
     {
       "id": 472,
@@ -3040,7 +3040,7 @@
         "sp_defense": 75,
         "speed": 95
       },
-      "primary_ability": "Hyper-Cutter"
+      "primary_ability": "Hyper Cutter"
     },
     {
       "id": 473,
@@ -3118,7 +3118,7 @@
         "sp_defense": 70,
         "speed": 110
       },
-      "primary_ability": "Snow-Cloak"
+      "primary_ability": "Snow Cloak"
     },
     {
       "id": 479,
@@ -3209,7 +3209,7 @@
         "sp_defense": 106,
         "speed": 77
       },
-      "primary_ability": "Flash-Fire"
+      "primary_ability": "Flash Fire"
     },
     {
       "id": 486,
@@ -3222,7 +3222,7 @@
         "sp_defense": 110,
         "speed": 100
       },
-      "primary_ability": "Slow-Start"
+      "primary_ability": "Slow Start"
     },
     {
       "id": 487,
@@ -3274,7 +3274,7 @@
         "sp_defense": 90,
         "speed": 125
       },
-      "primary_ability": "Bad-Dreams"
+      "primary_ability": "Bad Dreams"
     },
     {
       "id": 492,
@@ -3287,7 +3287,7 @@
         "sp_defense": 100,
         "speed": 100
       },
-      "primary_ability": "Natural-Cure"
+      "primary_ability": "Natural Cure"
     },
     {
       "id": 493,
@@ -3313,7 +3313,7 @@
         "sp_defense": 100,
         "speed": 100
       },
-      "primary_ability": "Victory-Star"
+      "primary_ability": "Victory Star"
     },
     {
       "id": 497,
@@ -3456,7 +3456,7 @@
         "sp_defense": 55,
         "speed": 93
       },
-      "primary_ability": "Big-Pecks"
+      "primary_ability": "Big Pecks"
     },
     {
       "id": 523,
@@ -3469,7 +3469,7 @@
         "sp_defense": 63,
         "speed": 116
       },
-      "primary_ability": "Lightning-Rod"
+      "primary_ability": "Lightning Rod"
     },
     {
       "id": 526,
@@ -3508,7 +3508,7 @@
         "sp_defense": 65,
         "speed": 88
       },
-      "primary_ability": "Sand-Rush"
+      "primary_ability": "Sand Rush"
     },
     {
       "id": 531,
@@ -3547,7 +3547,7 @@
         "sp_defense": 75,
         "speed": 74
       },
-      "primary_ability": "Swift-Swim"
+      "primary_ability": "Swift Swim"
     },
     {
       "id": 538,
@@ -3599,7 +3599,7 @@
         "sp_defense": 69,
         "speed": 112
       },
-      "primary_ability": "Poison-Point"
+      "primary_ability": "Poison Point"
     },
     {
       "id": 547,
@@ -3651,7 +3651,7 @@
         "sp_defense": 55,
         "speed": 95
       },
-      "primary_ability": "Sheer-Force"
+      "primary_ability": "Sheer Force"
     },
     {
       "id": 556,
@@ -3664,7 +3664,7 @@
         "sp_defense": 67,
         "speed": 60
       },
-      "primary_ability": "Water-Absorb"
+      "primary_ability": "Water Absorb"
     },
     {
       "id": 558,
@@ -3690,7 +3690,7 @@
         "sp_defense": 115,
         "speed": 58
       },
-      "primary_ability": "Shed-Skin"
+      "primary_ability": "Shed Skin"
     },
     {
       "id": 561,
@@ -3703,7 +3703,7 @@
         "sp_defense": 80,
         "speed": 97
       },
-      "primary_ability": "Wonder-Skin"
+      "primary_ability": "Wonder Skin"
     },
     {
       "id": 563,
@@ -3729,7 +3729,7 @@
         "sp_defense": 65,
         "speed": 32
       },
-      "primary_ability": "Solid-Rock"
+      "primary_ability": "Solid Rock"
     },
     {
       "id": 567,
@@ -3781,7 +3781,7 @@
         "sp_defense": 60,
         "speed": 115
       },
-      "primary_ability": "Cute-Charm"
+      "primary_ability": "Cute Charm"
     },
     {
       "id": 576,
@@ -3820,7 +3820,7 @@
         "sp_defense": 63,
         "speed": 98
       },
-      "primary_ability": "Keen-Eye"
+      "primary_ability": "Keen Eye"
     },
     {
       "id": 584,
@@ -3833,7 +3833,7 @@
         "sp_defense": 95,
         "speed": 79
       },
-      "primary_ability": "Ice-Body"
+      "primary_ability": "Ice Body"
     },
     {
       "id": 586,
@@ -3885,7 +3885,7 @@
         "sp_defense": 80,
         "speed": 30
       },
-      "primary_ability": "Effect-Spore"
+      "primary_ability": "Effect Spore"
     },
     {
       "id": 593,
@@ -3898,7 +3898,7 @@
         "sp_defense": 105,
         "speed": 60
       },
-      "primary_ability": "Water-Absorb"
+      "primary_ability": "Water Absorb"
     },
     {
       "id": 594,
@@ -3924,7 +3924,7 @@
         "sp_defense": 60,
         "speed": 108
       },
-      "primary_ability": "Compound-Eyes"
+      "primary_ability": "Compound Eyes"
     },
     {
       "id": 598,
@@ -3937,7 +3937,7 @@
         "sp_defense": 116,
         "speed": 20
       },
-      "primary_ability": "Iron-Barbs"
+      "primary_ability": "Iron Barbs"
     },
     {
       "id": 601,
@@ -3989,7 +3989,7 @@
         "sp_defense": 90,
         "speed": 80
       },
-      "primary_ability": "Flash-Fire"
+      "primary_ability": "Flash Fire"
     },
     {
       "id": 612,
@@ -4015,7 +4015,7 @@
         "sp_defense": 80,
         "speed": 50
       },
-      "primary_ability": "Snow-Cloak"
+      "primary_ability": "Snow Cloak"
     },
     {
       "id": 615,
@@ -4067,7 +4067,7 @@
         "sp_defense": 60,
         "speed": 105
       },
-      "primary_ability": "Inner-Focus"
+      "primary_ability": "Inner Focus"
     },
     {
       "id": 621,
@@ -4080,7 +4080,7 @@
         "sp_defense": 90,
         "speed": 48
       },
-      "primary_ability": "Rough-Skin"
+      "primary_ability": "Rough Skin"
     },
     {
       "id": 623,
@@ -4093,7 +4093,7 @@
         "sp_defense": 80,
         "speed": 55
       },
-      "primary_ability": "Iron-Fist"
+      "primary_ability": "Iron Fist"
     },
     {
       "id": 626,
@@ -4119,7 +4119,7 @@
         "sp_defense": 75,
         "speed": 80
       },
-      "primary_ability": "Keen-Eye"
+      "primary_ability": "Keen Eye"
     },
     {
       "id": 630,
@@ -4132,7 +4132,7 @@
         "sp_defense": 95,
         "speed": 80
       },
-      "primary_ability": "Big-Pecks"
+      "primary_ability": "Big Pecks"
     },
     {
       "id": 631,
@@ -4184,7 +4184,7 @@
         "sp_defense": 105,
         "speed": 100
       },
-      "primary_ability": "Flame-Body"
+      "primary_ability": "Flame Body"
     },
     {
       "id": 638,
@@ -4288,7 +4288,7 @@
         "sp_defense": 80,
         "speed": 101
       },
-      "primary_ability": "Sand-Force"
+      "primary_ability": "Sand Force"
     },
     {
       "id": 646,
@@ -4327,7 +4327,7 @@
         "sp_defense": 128,
         "speed": 90
       },
-      "primary_ability": "Serene-Grace"
+      "primary_ability": "Serene Grace"
     },
     {
       "id": 649,
@@ -4405,7 +4405,7 @@
         "sp_defense": 69,
         "speed": 126
       },
-      "primary_ability": "Flame-Body"
+      "primary_ability": "Flame Body"
     },
     {
       "id": 666,
@@ -4418,7 +4418,7 @@
         "sp_defense": 50,
         "speed": 89
       },
-      "primary_ability": "Shield-Dust"
+      "primary_ability": "Shield Dust"
     },
     {
       "id": 668,
@@ -4444,7 +4444,7 @@
         "sp_defense": 154,
         "speed": 75
       },
-      "primary_ability": "Flower-Veil"
+      "primary_ability": "Flower Veil"
     },
     {
       "id": 673,
@@ -4457,7 +4457,7 @@
         "sp_defense": 81,
         "speed": 68
       },
-      "primary_ability": "Sap-Sipper"
+      "primary_ability": "Sap Sipper"
     },
     {
       "id": 675,
@@ -4470,7 +4470,7 @@
         "sp_defense": 71,
         "speed": 58
       },
-      "primary_ability": "Iron-Fist"
+      "primary_ability": "Iron Fist"
     },
     {
       "id": 676,
@@ -4483,7 +4483,7 @@
         "sp_defense": 90,
         "speed": 102
       },
-      "primary_ability": "Fur-Coat"
+      "primary_ability": "Fur Coat"
     },
     {
       "id": 678,
@@ -4496,7 +4496,7 @@
         "sp_defense": 81,
         "speed": 104
       },
-      "primary_ability": "Keen-Eye"
+      "primary_ability": "Keen Eye"
     },
     {
       "id": 681,
@@ -4509,7 +4509,7 @@
         "sp_defense": 140,
         "speed": 60
       },
-      "primary_ability": "Stance-Change"
+      "primary_ability": "Stance Change"
     },
     {
       "id": 683,
@@ -4535,7 +4535,7 @@
         "sp_defense": 75,
         "speed": 72
       },
-      "primary_ability": "Sweet-Veil"
+      "primary_ability": "Sweet Veil"
     },
     {
       "id": 687,
@@ -4561,7 +4561,7 @@
         "sp_defense": 86,
         "speed": 68
       },
-      "primary_ability": "Tough-Claws"
+      "primary_ability": "Tough Claws"
     },
     {
       "id": 691,
@@ -4574,7 +4574,7 @@
         "sp_defense": 123,
         "speed": 44
       },
-      "primary_ability": "Poison-Point"
+      "primary_ability": "Poison Point"
     },
     {
       "id": 693,
@@ -4587,7 +4587,7 @@
         "sp_defense": 89,
         "speed": 59
       },
-      "primary_ability": "Mega-Launcher"
+      "primary_ability": "Mega Launcher"
     },
     {
       "id": 695,
@@ -4600,7 +4600,7 @@
         "sp_defense": 94,
         "speed": 109
       },
-      "primary_ability": "Dry-Skin"
+      "primary_ability": "Dry Skin"
     },
     {
       "id": 697,
@@ -4613,7 +4613,7 @@
         "sp_defense": 59,
         "speed": 71
       },
-      "primary_ability": "Strong-Jaw"
+      "primary_ability": "Strong Jaw"
     },
     {
       "id": 699,
@@ -4639,7 +4639,7 @@
         "sp_defense": 130,
         "speed": 60
       },
-      "primary_ability": "Cute-Charm"
+      "primary_ability": "Cute Charm"
     },
     {
       "id": 701,
@@ -4665,7 +4665,7 @@
         "sp_defense": 67,
         "speed": 101
       },
-      "primary_ability": "Cheek-Pouch"
+      "primary_ability": "Cheek Pouch"
     },
     {
       "id": 703,
@@ -4678,7 +4678,7 @@
         "sp_defense": 150,
         "speed": 50
       },
-      "primary_ability": "Clear-Body"
+      "primary_ability": "Clear Body"
     },
     {
       "id": 706,
@@ -4691,7 +4691,7 @@
         "sp_defense": 150,
         "speed": 80
       },
-      "primary_ability": "Sap-Sipper"
+      "primary_ability": "Sap Sipper"
     },
     {
       "id": 707,
@@ -4717,7 +4717,7 @@
         "sp_defense": 82,
         "speed": 56
       },
-      "primary_ability": "Natural-Cure"
+      "primary_ability": "Natural Cure"
     },
     {
       "id": 711,
@@ -4743,7 +4743,7 @@
         "sp_defense": 46,
         "speed": 28
       },
-      "primary_ability": "Own-Tempo"
+      "primary_ability": "Own Tempo"
     },
     {
       "id": 715,
@@ -4769,7 +4769,7 @@
         "sp_defense": 98,
         "speed": 99
       },
-      "primary_ability": "Fairy-Aura"
+      "primary_ability": "Fairy Aura"
     },
     {
       "id": 717,
@@ -4782,7 +4782,7 @@
         "sp_defense": 98,
         "speed": 99
       },
-      "primary_ability": "Dark-Aura"
+      "primary_ability": "Dark Aura"
     },
     {
       "id": 718,
@@ -4795,7 +4795,7 @@
         "sp_defense": 95,
         "speed": 95
       },
-      "primary_ability": "Aura-Break"
+      "primary_ability": "Aura Break"
     },
     {
       "id": 719,
@@ -4808,7 +4808,7 @@
         "sp_defense": 150,
         "speed": 50
       },
-      "primary_ability": "Clear-Body"
+      "primary_ability": "Clear Body"
     },
     {
       "id": 720,
@@ -4834,7 +4834,7 @@
         "sp_defense": 90,
         "speed": 70
       },
-      "primary_ability": "Water-Absorb"
+      "primary_ability": "Water Absorb"
     },
     {
       "id": 724,
@@ -4886,7 +4886,7 @@
         "sp_defense": 75,
         "speed": 60
       },
-      "primary_ability": "Keen-Eye"
+      "primary_ability": "Keen Eye"
     },
     {
       "id": 735,
@@ -4925,7 +4925,7 @@
         "sp_defense": 67,
         "speed": 43
       },
-      "primary_ability": "Hyper-Cutter"
+      "primary_ability": "Hyper Cutter"
     },
     {
       "id": 741,
@@ -4951,7 +4951,7 @@
         "sp_defense": 70,
         "speed": 124
       },
-      "primary_ability": "Honey-Gather"
+      "primary_ability": "Honey Gather"
     },
     {
       "id": 745,
@@ -4964,7 +4964,7 @@
         "sp_defense": 65,
         "speed": 112
       },
-      "primary_ability": "Keen-Eye"
+      "primary_ability": "Keen Eye"
     },
     {
       "id": 746,
@@ -5003,7 +5003,7 @@
         "sp_defense": 85,
         "speed": 35
       },
-      "primary_ability": "Own-Tempo"
+      "primary_ability": "Own Tempo"
     },
     {
       "id": 752,
@@ -5016,7 +5016,7 @@
         "sp_defense": 132,
         "speed": 42
       },
-      "primary_ability": "Water-Bubble"
+      "primary_ability": "Water Bubble"
     },
     {
       "id": 754,
@@ -5029,7 +5029,7 @@
         "sp_defense": 90,
         "speed": 45
       },
-      "primary_ability": "Leaf-Guard"
+      "primary_ability": "Leaf Guard"
     },
     {
       "id": 756,
@@ -5081,7 +5081,7 @@
         "sp_defense": 98,
         "speed": 72
       },
-      "primary_ability": "Leaf-Guard"
+      "primary_ability": "Leaf Guard"
     },
     {
       "id": 764,
@@ -5094,7 +5094,7 @@
         "sp_defense": 110,
         "speed": 100
       },
-      "primary_ability": "Flower-Veil"
+      "primary_ability": "Flower Veil"
     },
     {
       "id": 765,
@@ -5107,7 +5107,7 @@
         "sp_defense": 110,
         "speed": 60
       },
-      "primary_ability": "Inner-Focus"
+      "primary_ability": "Inner Focus"
     },
     {
       "id": 766,
@@ -5133,7 +5133,7 @@
         "sp_defense": 90,
         "speed": 40
       },
-      "primary_ability": "Emergency-Exit"
+      "primary_ability": "Emergency Exit"
     },
     {
       "id": 770,
@@ -5146,7 +5146,7 @@
         "sp_defense": 75,
         "speed": 35
       },
-      "primary_ability": "Water-Compaction"
+      "primary_ability": "Water Compaction"
     },
     {
       "id": 771,
@@ -5159,7 +5159,7 @@
         "sp_defense": 130,
         "speed": 5
       },
-      "primary_ability": "Innards-Out"
+      "primary_ability": "Innards Out"
     },
     {
       "id": 773,
@@ -5172,7 +5172,7 @@
         "sp_defense": 95,
         "speed": 95
       },
-      "primary_ability": "Rks-System"
+      "primary_ability": "Rks System"
     },
     {
       "id": 774,
@@ -5185,7 +5185,7 @@
         "sp_defense": 100,
         "speed": 60
       },
-      "primary_ability": "Shields-Down"
+      "primary_ability": "Shields Down"
     },
     {
       "id": 775,
@@ -5211,7 +5211,7 @@
         "sp_defense": 85,
         "speed": 36
       },
-      "primary_ability": "Shell-Armor"
+      "primary_ability": "Shell Armor"
     },
     {
       "id": 777,
@@ -5224,7 +5224,7 @@
         "sp_defense": 73,
         "speed": 96
       },
-      "primary_ability": "Iron-Barbs"
+      "primary_ability": "Iron Barbs"
     },
     {
       "id": 778,
@@ -5302,7 +5302,7 @@
         "sp_defense": 75,
         "speed": 130
       },
-      "primary_ability": "Electric-Surge"
+      "primary_ability": "Electric Surge"
     },
     {
       "id": 786,
@@ -5315,7 +5315,7 @@
         "sp_defense": 115,
         "speed": 95
       },
-      "primary_ability": "Psychic-Surge"
+      "primary_ability": "Psychic Surge"
     },
     {
       "id": 787,
@@ -5328,7 +5328,7 @@
         "sp_defense": 95,
         "speed": 75
       },
-      "primary_ability": "Grassy-Surge"
+      "primary_ability": "Grassy Surge"
     },
     {
       "id": 788,
@@ -5341,7 +5341,7 @@
         "sp_defense": 130,
         "speed": 85
       },
-      "primary_ability": "Misty-Surge"
+      "primary_ability": "Misty Surge"
     },
     {
       "id": 791,
@@ -5354,7 +5354,7 @@
         "sp_defense": 89,
         "speed": 97
       },
-      "primary_ability": "Full-Metal-Body"
+      "primary_ability": "Full Metal Body"
     },
     {
       "id": 792,
@@ -5367,7 +5367,7 @@
         "sp_defense": 107,
         "speed": 97
       },
-      "primary_ability": "Shadow-Shield"
+      "primary_ability": "Shadow Shield"
     },
     {
       "id": 793,
@@ -5380,7 +5380,7 @@
         "sp_defense": 131,
         "speed": 103
       },
-      "primary_ability": "Beast-Boost"
+      "primary_ability": "Beast Boost"
     },
     {
       "id": 794,
@@ -5393,7 +5393,7 @@
         "sp_defense": 53,
         "speed": 79
       },
-      "primary_ability": "Beast-Boost"
+      "primary_ability": "Beast Boost"
     },
     {
       "id": 795,
@@ -5406,7 +5406,7 @@
         "sp_defense": 37,
         "speed": 151
       },
-      "primary_ability": "Beast-Boost"
+      "primary_ability": "Beast Boost"
     },
     {
       "id": 796,
@@ -5419,7 +5419,7 @@
         "sp_defense": 71,
         "speed": 83
       },
-      "primary_ability": "Beast-Boost"
+      "primary_ability": "Beast Boost"
     },
     {
       "id": 797,
@@ -5432,7 +5432,7 @@
         "sp_defense": 101,
         "speed": 61
       },
-      "primary_ability": "Beast-Boost"
+      "primary_ability": "Beast Boost"
     },
     {
       "id": 798,
@@ -5445,7 +5445,7 @@
         "sp_defense": 31,
         "speed": 109
       },
-      "primary_ability": "Beast-Boost"
+      "primary_ability": "Beast Boost"
     },
     {
       "id": 799,
@@ -5458,7 +5458,7 @@
         "sp_defense": 53,
         "speed": 43
       },
-      "primary_ability": "Beast-Boost"
+      "primary_ability": "Beast Boost"
     },
     {
       "id": 800,
@@ -5471,7 +5471,7 @@
         "sp_defense": 89,
         "speed": 79
       },
-      "primary_ability": "Prism-Armor"
+      "primary_ability": "Prism Armor"
     },
     {
       "id": 801,
@@ -5510,7 +5510,7 @@
         "sp_defense": 73,
         "speed": 121
       },
-      "primary_ability": "Beast-Boost"
+      "primary_ability": "Beast Boost"
     },
     {
       "id": 805,
@@ -5523,7 +5523,7 @@
         "sp_defense": 101,
         "speed": 13
       },
-      "primary_ability": "Beast-Boost"
+      "primary_ability": "Beast Boost"
     },
     {
       "id": 806,
@@ -5536,7 +5536,7 @@
         "sp_defense": 79,
         "speed": 107
       },
-      "primary_ability": "Beast-Boost"
+      "primary_ability": "Beast Boost"
     },
     {
       "id": 807,
@@ -5549,7 +5549,7 @@
         "sp_defense": 80,
         "speed": 143
       },
-      "primary_ability": "Volt-Absorb"
+      "primary_ability": "Volt Absorb"
     },
     {
       "id": 808,
@@ -5562,7 +5562,7 @@
         "sp_defense": 35,
         "speed": 34
       },
-      "primary_ability": "Magnet-Pull"
+      "primary_ability": "Magnet Pull"
     },
     {
       "id": 809,
@@ -5575,7 +5575,7 @@
         "sp_defense": 65,
         "speed": 34
       },
-      "primary_ability": "Iron-Fist"
+      "primary_ability": "Iron Fist"
     },
     {
       "id": 812,
@@ -5627,7 +5627,7 @@
         "sp_defense": 75,
         "speed": 20
       },
-      "primary_ability": "Cheek-Pouch"
+      "primary_ability": "Cheek Pouch"
     },
     {
       "id": 823,
@@ -5666,7 +5666,7 @@
         "sp_defense": 92,
         "speed": 90
       },
-      "primary_ability": "Run-Away"
+      "primary_ability": "Run Away"
     },
     {
       "id": 830,
@@ -5679,7 +5679,7 @@
         "sp_defense": 120,
         "speed": 60
       },
-      "primary_ability": "Cotton-Down"
+      "primary_ability": "Cotton Down"
     },
     {
       "id": 832,
@@ -5705,7 +5705,7 @@
         "sp_defense": 68,
         "speed": 74
       },
-      "primary_ability": "Strong-Jaw"
+      "primary_ability": "Strong Jaw"
     },
     {
       "id": 836,
@@ -5718,7 +5718,7 @@
         "sp_defense": 60,
         "speed": 121
       },
-      "primary_ability": "Strong-Jaw"
+      "primary_ability": "Strong Jaw"
     },
     {
       "id": 839,
@@ -5731,7 +5731,7 @@
         "sp_defense": 90,
         "speed": 30
       },
-      "primary_ability": "Steam-Engine"
+      "primary_ability": "Steam Engine"
     },
     {
       "id": 841,
@@ -5770,7 +5770,7 @@
         "sp_defense": 70,
         "speed": 71
       },
-      "primary_ability": "Sand-Spit"
+      "primary_ability": "Sand Spit"
     },
     {
       "id": 845,
@@ -5783,7 +5783,7 @@
         "sp_defense": 95,
         "speed": 85
       },
-      "primary_ability": "Gulp-Missile"
+      "primary_ability": "Gulp Missile"
     },
     {
       "id": 847,
@@ -5796,7 +5796,7 @@
         "sp_defense": 50,
         "speed": 136
       },
-      "primary_ability": "Swift-Swim"
+      "primary_ability": "Swift Swim"
     },
     {
       "id": 849,
@@ -5809,7 +5809,7 @@
         "sp_defense": 70,
         "speed": 75
       },
-      "primary_ability": "Punk-Rock"
+      "primary_ability": "Punk Rock"
     },
     {
       "id": 851,
@@ -5822,7 +5822,7 @@
         "sp_defense": 90,
         "speed": 65
       },
-      "primary_ability": "Flash-Fire"
+      "primary_ability": "Flash Fire"
     },
     {
       "id": 853,
@@ -5848,7 +5848,7 @@
         "sp_defense": 114,
         "speed": 70
       },
-      "primary_ability": "Weak-Armor"
+      "primary_ability": "Weak Armor"
     },
     {
       "id": 858,
@@ -5900,7 +5900,7 @@
         "sp_defense": 60,
         "speed": 50
       },
-      "primary_ability": "Battle-Armor"
+      "primary_ability": "Battle Armor"
     },
     {
       "id": 864,
@@ -5913,7 +5913,7 @@
         "sp_defense": 130,
         "speed": 30
       },
-      "primary_ability": "Weak-Armor"
+      "primary_ability": "Weak Armor"
     },
     {
       "id": 865,
@@ -5939,7 +5939,7 @@
         "sp_defense": 100,
         "speed": 70
       },
-      "primary_ability": "Tangled-Feet"
+      "primary_ability": "Tangled Feet"
     },
     {
       "id": 867,
@@ -5952,7 +5952,7 @@
         "sp_defense": 105,
         "speed": 30
       },
-      "primary_ability": "Wandering-Spirit"
+      "primary_ability": "Wandering Spirit"
     },
     {
       "id": 869,
@@ -5965,7 +5965,7 @@
         "sp_defense": 121,
         "speed": 64
       },
-      "primary_ability": "Sweet-Veil"
+      "primary_ability": "Sweet Veil"
     },
     {
       "id": 870,
@@ -5978,7 +5978,7 @@
         "sp_defense": 60,
         "speed": 75
       },
-      "primary_ability": "Battle-Armor"
+      "primary_ability": "Battle Armor"
     },
     {
       "id": 871,
@@ -5991,7 +5991,7 @@
         "sp_defense": 85,
         "speed": 15
       },
-      "primary_ability": "Lightning-Rod"
+      "primary_ability": "Lightning Rod"
     },
     {
       "id": 873,
@@ -6004,7 +6004,7 @@
         "sp_defense": 90,
         "speed": 65
       },
-      "primary_ability": "Shield-Dust"
+      "primary_ability": "Shield Dust"
     },
     {
       "id": 874,
@@ -6017,7 +6017,7 @@
         "sp_defense": 20,
         "speed": 70
       },
-      "primary_ability": "Power-Spot"
+      "primary_ability": "Power Spot"
     },
     {
       "id": 875,
@@ -6030,7 +6030,7 @@
         "sp_defense": 90,
         "speed": 50
       },
-      "primary_ability": "Ice-Face"
+      "primary_ability": "Ice Face"
     },
     {
       "id": 876,
@@ -6043,7 +6043,7 @@
         "sp_defense": 95,
         "speed": 95
       },
-      "primary_ability": "Inner-Focus"
+      "primary_ability": "Inner Focus"
     },
     {
       "id": 877,
@@ -6056,7 +6056,7 @@
         "sp_defense": 58,
         "speed": 97
       },
-      "primary_ability": "Hunger-Switch"
+      "primary_ability": "Hunger Switch"
     },
     {
       "id": 879,
@@ -6069,7 +6069,7 @@
         "sp_defense": 69,
         "speed": 30
       },
-      "primary_ability": "Sheer-Force"
+      "primary_ability": "Sheer Force"
     },
     {
       "id": 880,
@@ -6082,7 +6082,7 @@
         "sp_defense": 70,
         "speed": 75
       },
-      "primary_ability": "Volt-Absorb"
+      "primary_ability": "Volt Absorb"
     },
     {
       "id": 881,
@@ -6095,7 +6095,7 @@
         "sp_defense": 80,
         "speed": 55
       },
-      "primary_ability": "Volt-Absorb"
+      "primary_ability": "Volt Absorb"
     },
     {
       "id": 882,
@@ -6108,7 +6108,7 @@
         "sp_defense": 80,
         "speed": 75
       },
-      "primary_ability": "Water-Absorb"
+      "primary_ability": "Water Absorb"
     },
     {
       "id": 883,
@@ -6121,7 +6121,7 @@
         "sp_defense": 90,
         "speed": 55
       },
-      "primary_ability": "Water-Absorb"
+      "primary_ability": "Water Absorb"
     },
     {
       "id": 887,
@@ -6134,7 +6134,7 @@
         "sp_defense": 75,
         "speed": 142
       },
-      "primary_ability": "Clear-Body"
+      "primary_ability": "Clear Body"
     },
     {
       "id": 888,
@@ -6147,7 +6147,7 @@
         "sp_defense": 115,
         "speed": 138
       },
-      "primary_ability": "Intrepid-Sword"
+      "primary_ability": "Intrepid Sword"
     },
     {
       "id": 889,
@@ -6160,7 +6160,7 @@
         "sp_defense": 115,
         "speed": 138
       },
-      "primary_ability": "Dauntless-Shield"
+      "primary_ability": "Dauntless Shield"
     },
     {
       "id": 890,
@@ -6186,7 +6186,7 @@
         "sp_defense": 60,
         "speed": 97
       },
-      "primary_ability": "Unseen-Fist"
+      "primary_ability": "Unseen Fist"
     },
     {
       "id": 893,
@@ -6199,7 +6199,7 @@
         "sp_defense": 95,
         "speed": 105
       },
-      "primary_ability": "Leaf-Guard"
+      "primary_ability": "Leaf Guard"
     },
     {
       "id": 894,
@@ -6225,7 +6225,7 @@
         "sp_defense": 50,
         "speed": 80
       },
-      "primary_ability": "Dragons-Maw"
+      "primary_ability": "Dragon's Maw"
     },
     {
       "id": 896,
@@ -6238,7 +6238,7 @@
         "sp_defense": 110,
         "speed": 30
       },
-      "primary_ability": "Chilling-Neigh"
+      "primary_ability": "Chilling Neigh"
     },
     {
       "id": 897,
@@ -6251,7 +6251,7 @@
         "sp_defense": 80,
         "speed": 130
       },
-      "primary_ability": "Grim-Neigh"
+      "primary_ability": "Grim Neigh"
     },
     {
       "id": 898,
@@ -6316,7 +6316,7 @@
         "sp_defense": 75,
         "speed": 78
       },
-      "primary_ability": "Swift-Swim"
+      "primary_ability": "Swift Swim"
     },
     {
       "id": 903,
@@ -6342,7 +6342,7 @@
         "sp_defense": 65,
         "speed": 85
       },
-      "primary_ability": "Poison-Point"
+      "primary_ability": "Poison Point"
     },
     {
       "id": 905,
@@ -6355,7 +6355,7 @@
         "sp_defense": 80,
         "speed": 106
       },
-      "primary_ability": "Cute-Charm"
+      "primary_ability": "Cute Charm"
     },
     {
       "id": 908,
@@ -6407,7 +6407,7 @@
         "sp_defense": 80,
         "speed": 65
       },
-      "primary_ability": "Lingering-Aroma"
+      "primary_ability": "Lingering Aroma"
     },
     {
       "id": 918,
@@ -6446,7 +6446,7 @@
         "sp_defense": 60,
         "speed": 105
       },
-      "primary_ability": "Volt-Absorb"
+      "primary_ability": "Volt Absorb"
     },
     {
       "id": 925,
@@ -6459,7 +6459,7 @@
         "sp_defense": 75,
         "speed": 111
       },
-      "primary_ability": "Friend-Guard"
+      "primary_ability": "Friend Guard"
     },
     {
       "id": 927,
@@ -6472,7 +6472,7 @@
         "sp_defense": 80,
         "speed": 95
       },
-      "primary_ability": "Well-Baked-Body"
+      "primary_ability": "Well Baked Body"
     },
     {
       "id": 930,
@@ -6485,7 +6485,7 @@
         "sp_defense": 109,
         "speed": 39
       },
-      "primary_ability": "Seed-Sower"
+      "primary_ability": "Seed Sower"
     },
     {
       "id": 931,
@@ -6511,7 +6511,7 @@
         "sp_defense": 90,
         "speed": 35
       },
-      "primary_ability": "Purifying-Salt"
+      "primary_ability": "Purifying Salt"
     },
     {
       "id": 936,
@@ -6524,7 +6524,7 @@
         "sp_defense": 80,
         "speed": 75
       },
-      "primary_ability": "Flash-Fire"
+      "primary_ability": "Flash Fire"
     },
     {
       "id": 937,
@@ -6537,7 +6537,7 @@
         "sp_defense": 100,
         "speed": 85
       },
-      "primary_ability": "Flash-Fire"
+      "primary_ability": "Flash Fire"
     },
     {
       "id": 939,
@@ -6563,7 +6563,7 @@
         "sp_defense": 60,
         "speed": 125
       },
-      "primary_ability": "Wind-Power"
+      "primary_ability": "Wind Power"
     },
     {
       "id": 943,
@@ -6602,7 +6602,7 @@
         "sp_defense": 70,
         "speed": 90
       },
-      "primary_ability": "Wind-Rider"
+      "primary_ability": "Wind Rider"
     },
     {
       "id": 949,
@@ -6615,7 +6615,7 @@
         "sp_defense": 120,
         "speed": 100
       },
-      "primary_ability": "Mycelium-Might"
+      "primary_ability": "Mycelium Might"
     },
     {
       "id": 950,
@@ -6628,7 +6628,7 @@
         "sp_defense": 55,
         "speed": 75
       },
-      "primary_ability": "Anger-Shell"
+      "primary_ability": "Anger Shell"
     },
     {
       "id": 952,
@@ -6680,7 +6680,7 @@
         "sp_defense": 105,
         "speed": 94
       },
-      "primary_ability": "Mold-Breaker"
+      "primary_ability": "Mold Breaker"
     },
     {
       "id": 961,
@@ -6706,7 +6706,7 @@
         "sp_defense": 85,
         "speed": 82
       },
-      "primary_ability": "Big-Pecks"
+      "primary_ability": "Big Pecks"
     },
     {
       "id": 964,
@@ -6719,7 +6719,7 @@
         "sp_defense": 62,
         "speed": 100
       },
-      "primary_ability": "Zero-To-Hero"
+      "primary_ability": "Zero To Hero"
     },
     {
       "id": 966,
@@ -6745,7 +6745,7 @@
         "sp_defense": 65,
         "speed": 121
       },
-      "primary_ability": "Shed-Skin"
+      "primary_ability": "Shed Skin"
     },
     {
       "id": 968,
@@ -6758,7 +6758,7 @@
         "sp_defense": 55,
         "speed": 65
       },
-      "primary_ability": "Earth-Eater"
+      "primary_ability": "Earth Eater"
     },
     {
       "id": 970,
@@ -6771,7 +6771,7 @@
         "sp_defense": 81,
         "speed": 86
       },
-      "primary_ability": "Toxic-Debris"
+      "primary_ability": "Toxic Debris"
     },
     {
       "id": 972,
@@ -6784,7 +6784,7 @@
         "sp_defense": 97,
         "speed": 68
       },
-      "primary_ability": "Sand-Rush"
+      "primary_ability": "Sand Rush"
     },
     {
       "id": 973,
@@ -6810,7 +6810,7 @@
         "sp_defense": 55,
         "speed": 73
       },
-      "primary_ability": "Thick-Fat"
+      "primary_ability": "Thick Fat"
     },
     {
       "id": 976,
@@ -6823,7 +6823,7 @@
         "sp_defense": 65,
         "speed": 70
       },
-      "primary_ability": "Mold-Breaker"
+      "primary_ability": "Mold Breaker"
     },
     {
       "id": 977,
@@ -6862,7 +6862,7 @@
         "sp_defense": 90,
         "speed": 90
       },
-      "primary_ability": "Vital-Spirit"
+      "primary_ability": "Vital Spirit"
     },
     {
       "id": 980,
@@ -6875,7 +6875,7 @@
         "sp_defense": 100,
         "speed": 20
       },
-      "primary_ability": "Poison-Point"
+      "primary_ability": "Poison Point"
     },
     {
       "id": 981,
@@ -6888,7 +6888,7 @@
         "sp_defense": 70,
         "speed": 60
       },
-      "primary_ability": "Cud-Chew"
+      "primary_ability": "Cud Chew"
     },
     {
       "id": 982,
@@ -6901,7 +6901,7 @@
         "sp_defense": 75,
         "speed": 55
       },
-      "primary_ability": "Serene-Grace"
+      "primary_ability": "Serene Grace"
     },
     {
       "id": 983,
@@ -7005,7 +7005,7 @@
         "sp_defense": 70,
         "speed": 106
       },
-      "primary_ability": "Quark-Drive"
+      "primary_ability": "Quark Drive"
     },
     {
       "id": 991,
@@ -7018,7 +7018,7 @@
         "sp_defense": 60,
         "speed": 136
       },
-      "primary_ability": "Quark-Drive"
+      "primary_ability": "Quark Drive"
     },
     {
       "id": 992,
@@ -7031,7 +7031,7 @@
         "sp_defense": 68,
         "speed": 50
       },
-      "primary_ability": "Quark-Drive"
+      "primary_ability": "Quark Drive"
     },
     {
       "id": 993,
@@ -7044,7 +7044,7 @@
         "sp_defense": 80,
         "speed": 108
       },
-      "primary_ability": "Quark-Drive"
+      "primary_ability": "Quark Drive"
     },
     {
       "id": 994,
@@ -7057,7 +7057,7 @@
         "sp_defense": 110,
         "speed": 110
       },
-      "primary_ability": "Quark-Drive"
+      "primary_ability": "Quark Drive"
     },
     {
       "id": 995,
@@ -7070,7 +7070,7 @@
         "sp_defense": 84,
         "speed": 72
       },
-      "primary_ability": "Quark-Drive"
+      "primary_ability": "Quark Drive"
     },
     {
       "id": 998,
@@ -7083,7 +7083,7 @@
         "sp_defense": 86,
         "speed": 87
       },
-      "primary_ability": "Thermal-Exchange"
+      "primary_ability": "Thermal Exchange"
     },
     {
       "id": 1000,
@@ -7096,7 +7096,7 @@
         "sp_defense": 91,
         "speed": 84
       },
-      "primary_ability": "Good-As-Gold"
+      "primary_ability": "Good as Gold"
     },
     {
       "id": 1001,
@@ -7109,7 +7109,7 @@
         "sp_defense": 135,
         "speed": 70
       },
-      "primary_ability": "Tablets-Of-Ruin"
+      "primary_ability": "Tablets of Ruin"
     },
     {
       "id": 1002,
@@ -7122,7 +7122,7 @@
         "sp_defense": 65,
         "speed": 135
       },
-      "primary_ability": "Sword-Of-Ruin"
+      "primary_ability": "Sword of Ruin"
     },
     {
       "id": 1003,
@@ -7135,7 +7135,7 @@
         "sp_defense": 80,
         "speed": 45
       },
-      "primary_ability": "Vessel-Of-Ruin"
+      "primary_ability": "Vessel of Ruin"
     },
     {
       "id": 1004,
@@ -7148,7 +7148,7 @@
         "sp_defense": 120,
         "speed": 100
       },
-      "primary_ability": "Beads-Of-Ruin"
+      "primary_ability": "Beads of Ruin"
     },
     {
       "id": 1005,
@@ -7174,7 +7174,7 @@
         "sp_defense": 60,
         "speed": 116
       },
-      "primary_ability": "Quark-Drive"
+      "primary_ability": "Quark Drive"
     },
     {
       "id": 1007,
@@ -7187,7 +7187,7 @@
         "sp_defense": 100,
         "speed": 135
       },
-      "primary_ability": "Orichalcum-Pulse"
+      "primary_ability": "Orichalcum Pulse"
     },
     {
       "id": 1008,
@@ -7200,7 +7200,7 @@
         "sp_defense": 115,
         "speed": 135
       },
-      "primary_ability": "Hadron-Engine"
+      "primary_ability": "Hadron Engine"
     },
     {
       "id": 1009,
@@ -7226,7 +7226,7 @@
         "sp_defense": 108,
         "speed": 104
       },
-      "primary_ability": "Quark-Drive"
+      "primary_ability": "Quark Drive"
     },
     {
       "id": 1013,
@@ -7252,7 +7252,7 @@
         "sp_defense": 86,
         "speed": 80
       },
-      "primary_ability": "Toxic-Chain"
+      "primary_ability": "Toxic Chain"
     },
     {
       "id": 1015,
@@ -7265,7 +7265,7 @@
         "sp_defense": 90,
         "speed": 106
       },
-      "primary_ability": "Toxic-Chain"
+      "primary_ability": "Toxic Chain"
     },
     {
       "id": 1016,
@@ -7278,7 +7278,7 @@
         "sp_defense": 125,
         "speed": 99
       },
-      "primary_ability": "Toxic-Chain"
+      "primary_ability": "Toxic Chain"
     },
     {
       "id": 1017,
@@ -7317,7 +7317,7 @@
         "sp_defense": 80,
         "speed": 44
       },
-      "primary_ability": "Supersweet-Syrup"
+      "primary_ability": "Supersweet Syrup"
     },
     {
       "id": 1020,
@@ -7356,7 +7356,7 @@
         "sp_defense": 108,
         "speed": 124
       },
-      "primary_ability": "Quark-Drive"
+      "primary_ability": "Quark Drive"
     },
     {
       "id": 1023,
@@ -7369,7 +7369,7 @@
         "sp_defense": 108,
         "speed": 98
       },
-      "primary_ability": "Quark-Drive"
+      "primary_ability": "Quark Drive"
     },
     {
       "id": 1024,
@@ -7382,7 +7382,7 @@
         "sp_defense": 85,
         "speed": 60
       },
-      "primary_ability": "Tera-Shift"
+      "primary_ability": "Tera Shift"
     },
     {
       "id": 1025,
@@ -7395,7 +7395,7 @@
         "sp_defense": 88,
         "speed": 88
       },
-      "primary_ability": "Poison-Puppeteer"
+      "primary_ability": "Poison Puppeteer"
     }
   ]
 }

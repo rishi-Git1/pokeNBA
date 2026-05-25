@@ -106,6 +106,101 @@ a:hover { text-decoration: underline; }
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.mode-cluster {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.mode-label {
+  font-size: 0.78rem;
+  color: var(--text-mute);
+  white-space: nowrap;
+}
+.mode-select {
+  font: inherit;
+  font-size: 0.85rem;
+  padding: 0.35rem 0.55rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--panel-2);
+  color: var(--text);
+  max-width: 9rem;
+}
+.pill-mode-team {
+  background: rgba(59, 130, 246, 0.15);
+  color: #93c5fd;
+  border: 1px solid rgba(59, 130, 246, 0.35);
+  cursor: pointer;
+  font: inherit;
+}
+button.pill-mode-team {
+  appearance: none;
+  padding: 0.25rem 0.75rem;
+}
+.pill-mode-team:hover {
+  background: rgba(59, 130, 246, 0.28);
+  color: #bfdbfe;
+}
+
+.cpu-moves-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  max-height: 50vh;
+  overflow-y: auto;
+  margin: 0.75rem 0;
+}
+.cpu-move-row {
+  padding: 0.55rem 0.65rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--panel-2);
+  font-size: 0.9rem;
+}
+.cpu-move-date {
+  font-size: 0.75rem;
+  color: var(--text-mute);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.2rem;
+}
+.cpu-move-team {
+  font-weight: 600;
+  margin-bottom: 0.15rem;
+}
+.cpu-move-detail {
+  color: var(--text-mute);
+}
+
+.player-tile-injured {
+  border-color: rgba(239, 68, 68, 0.35);
+}
+.player-tile .name {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+}
+.injury-badge {
+  font: inherit;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  padding: 0.12rem 0.4rem;
+  border-radius: 999px;
+  border: 1px solid rgba(239, 68, 68, 0.45);
+  background: rgba(239, 68, 68, 0.15);
+  color: #fca5a5;
+  cursor: pointer;
+}
+.injury-badge:hover {
+  background: rgba(239, 68, 68, 0.28);
+  color: #fecaca;
 }
 
 /* ---- buttons + pills -------------------------------------------------- */

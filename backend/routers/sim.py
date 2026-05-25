@@ -11,6 +11,8 @@ from sqlalchemy import desc, select
 from sqlalchemy.orm import Session
 
 from backend.database import get_db
+from backend.league.cpu_gm import run_cpu_gm_moves
+from backend.league.gm_mode import TEAM_GM
 from backend.league.lifecycle import maybe_advance_phase
 from backend.league.state import get_state
 from backend.models import BoxScore, Game, Phase
@@ -56,6 +58,8 @@ def get_schedule(
 def post_sim_day(
     season: int | None = None,
     seed: int | None = None,
+    game_mode: str = Query("league_gm", description="league_gm or team_gm"),
+    user_team_id: int | None = Query(None, description="Human-controlled team in team_gm mode"),
     db: Session = Depends(get_db),
 ) -> dict:
     """Sim one game day of the regular season for the current league season.
@@ -83,6 +87,17 @@ def post_sim_day(
             select(Game).where(Game.season == target_season, Game.game_date == result.sim_date)
         )
     )
+    cpu_moves: list[dict] = []
+    if game_mode == TEAM_GM:
+        if user_team_id is None:
+            raise HTTPException(
+                status_code=400,
+                detail="Team GM mode requires user_team_id when simming days.",
+            )
+        cpu_moves = run_cpu_gm_moves(db, user_team_id=user_team_id, rng=rng)
+        for move in cpu_moves:
+            move["sim_date"] = str(result.sim_date)
+
     transition = maybe_advance_phase(db)
     return {
         "sim_date": str(result.sim_date),
@@ -90,6 +105,8 @@ def post_sim_day(
         "games_played": result.games_played,
         "box_scores_written": result.box_scores_written,
         "games": [GameOut.model_validate(g).model_dump(mode="json") for g in games],
+        "injury_report": result.injury_report,
+        "cpu_moves": cpu_moves,
         "transition": transition,
     }
 

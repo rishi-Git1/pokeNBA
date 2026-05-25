@@ -6,6 +6,8 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from backend.database import get_db
+from backend.league.injuries import enrich_players, get_player_injury_profile
+from backend.league.state import get_state
 from backend.models import Player
 from backend.schemas import PlayerOut, PlayerSummary
 
@@ -32,7 +34,21 @@ def list_players(
     if free_agents_only:
         stmt = stmt.where(Player.team_id.is_(None))
     stmt = stmt.order_by(Player.bst.desc()).limit(limit).offset(offset)
-    return list(db.scalars(stmt))
+    players = list(db.scalars(stmt))
+    season = get_state(db).current_season
+    return enrich_players(db, players, season=season)
+
+
+@router.get("/{player_id}/injuries")
+def get_player_injuries(
+    player_id: int,
+    season: int | None = None,
+    db: Session = Depends(get_db),
+) -> dict:
+    player = db.get(Player, player_id)
+    if player is None:
+        raise HTTPException(status_code=404, detail="Player not found")
+    return get_player_injury_profile(db, player_id=player_id, season=season)
 
 
 @router.get("/{player_id}", response_model=PlayerOut)

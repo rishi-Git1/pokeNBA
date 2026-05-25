@@ -6,6 +6,13 @@ from pydantic import BaseModel, ConfigDict
 from backend.models.player import Position
 
 
+class PlayerInjuryStatus(BaseModel):
+    is_injured: bool = False
+    games_remaining: int = 0
+    stint_games_total: int = 0
+    season_injury_count: int = 0
+
+
 class PlayerSummary(BaseModel):
     """Lightweight player blob used in roster lists."""
     model_config = ConfigDict(from_attributes=True)
@@ -24,6 +31,7 @@ class PlayerSummary(BaseModel):
     team_id: int | None = None
     on_rookie_deal: bool = False
     rookie_seasons_remaining: int = 0
+    injury: PlayerInjuryStatus = PlayerInjuryStatus()
 
 
 class PlayerOut(PlayerSummary):

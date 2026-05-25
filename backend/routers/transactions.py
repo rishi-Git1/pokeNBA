@@ -1,11 +1,12 @@
 """Trade + free-agent endpoints."""
 from __future__ import annotations
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Query
 from pydantic import BaseModel, Field
 from sqlalchemy.orm import Session
 
 from backend.database import get_db
+from backend.league.gm_mode import assert_can_manage_team
 from backend.league.projections import project_after_release, project_after_sign
 from backend.league.transactions import (
     TradeProposal,
@@ -63,7 +64,14 @@ def post_trade(payload: TradeRequest, db: Session = Depends(get_db)) -> dict:
 
 
 @router.post("/sign", response_model=PlayerOut)
-def post_sign(team_id: int, player_id: int, db: Session = Depends(get_db)):
+def post_sign(
+    team_id: int,
+    player_id: int,
+    game_mode: str = Query("league_gm"),
+    user_team_id: int | None = Query(None),
+    db: Session = Depends(get_db),
+):
+    assert_can_manage_team(team_id=team_id, game_mode=game_mode, user_team_id=user_team_id)
     try:
         return sign_free_agent(db, team_id=team_id, player_id=player_id)
     except TransactionError as exc:
@@ -71,7 +79,14 @@ def post_sign(team_id: int, player_id: int, db: Session = Depends(get_db)):
 
 
 @router.post("/release", response_model=PlayerOut)
-def post_release(team_id: int, player_id: int, db: Session = Depends(get_db)):
+def post_release(
+    team_id: int,
+    player_id: int,
+    game_mode: str = Query("league_gm"),
+    user_team_id: int | None = Query(None),
+    db: Session = Depends(get_db),
+):
+    assert_can_manage_team(team_id=team_id, game_mode=game_mode, user_team_id=user_team_id)
     try:
         return release_player(db, team_id=team_id, player_id=player_id)
     except TransactionError as exc:

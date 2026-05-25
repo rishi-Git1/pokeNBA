@@ -34,7 +34,7 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from backend.models import Game, Player, Series, Team
-from backend.league.playoff_injuries import (
+from backend.league.injuries import (
     advance_injury_clocks,
     merge_reports,
     prepare_team_roster,
@@ -95,19 +95,22 @@ def _sim_one_series_game(db: Session, series: Series, *, rng: random.Random) -> 
     """Sim the next scheduled game in a single series."""
     game_number = series.high_seed_wins + series.low_seed_wins + 1
     home_team, away_team = _matchup_home_away(db, series, game_number)
+    game_date = _next_playoff_date(db, series.season)
 
     raw_rosters = _load_rosters(db, {home_team.id, away_team.id})
     home_available, home_report = prepare_team_roster(
         db, season=series.season, roster=raw_rosters[home_team.id], rng=rng,
+        phase="playoffs", event_date=game_date,
     )
     away_available, away_report = prepare_team_roster(
         db, season=series.season, roster=raw_rosters[away_team.id], rng=rng,
+        phase="playoffs", event_date=game_date,
     )
     injury_report = merge_reports(home_report, away_report)
 
     game = Game(
         season=series.season,
-        game_date=_next_playoff_date(db, series.season),
+        game_date=game_date,
         home_team_id=home_team.id,
         away_team_id=away_team.id,
         is_playoff=True,
@@ -155,7 +158,10 @@ def _sim_one_series_game(db: Session, series: Series, *, rng: random.Random) -> 
         series.winner_team_id = series.low_seed_team_id
         series_finished_now = True
 
-    advance_injury_clocks(db, season=series.season, team_ids={home_team.id, away_team.id})
+    advance_injury_clocks(
+        db, season=series.season, team_ids={home_team.id, away_team.id},
+        phase="playoffs", event_date=game_date,
+    )
     db.commit()
 
     if series_finished_now:

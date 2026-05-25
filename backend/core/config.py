@@ -21,6 +21,9 @@ class Settings(BaseSettings):
     starters_per_team: int = 5
     fa_buffer: int = 60  # extra free agents when the dex is smaller than the league
 
+    # --- Team GM mode (CPU roster churn) ---
+    cpu_gm_move_chance: float = 0.05  # per AI team, per sim day
+
     # --- Salary cap ---
     # Average fully-evolved BST is ~500. With 15-man rosters, a realistic
     # league cap lands around 7,500. The original spec quoted 2,500 as

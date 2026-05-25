@@ -20,7 +20,8 @@ from sqlalchemy import insert, select
 from sqlalchemy.orm import Session
 
 from backend.models import BoxScore, Game, Player, Team
-from backend.sim.game import GameResult, players_to_pigs, run_game
+from backend.league.injuries import InjuryReport, advance_injury_clocks, merge_reports, prepare_team_roster
+from backend.sim.game import GameResult, run_game
 
 
 @dataclass(slots=True)
@@ -30,6 +31,7 @@ class DayResult:
     games_played: int
     box_scores_written: int
     results: list[GameResult]
+    injury_report: dict | None = None
 
 
 def _load_rosters(db: Session, team_ids: set[int]) -> dict[int, list[Player]]:
@@ -100,49 +102,69 @@ def sim_day(
     teams: dict[int, Team] = {t.id: t for t in db.scalars(select(Team).where(Team.id.in_(team_ids)))}
 
     box_score_payload: list[dict] = []
+    day_report = InjuryReport()
 
     if parallel or executor is not None:
-        # Build picklable worker jobs in the main process, then fan out.
-        from backend.sim.parallel import GameJob, _run_one, run_jobs_in_parallel
-
-        jobs: list[GameJob] = []
-        for game in games:
-            home = teams[game.home_team_id]
-            away = teams[game.away_team_id]
-            jobs.append(GameJob(
-                game_id=game.id,
-                season=season,
-                home_id=home.id,
-                home_abbr=home.abbreviation,
-                home_pigs=players_to_pigs(rosters[home.id]),
-                away_id=away.id,
-                away_abbr=away.abbreviation,
-                away_pigs=players_to_pigs(rosters[away.id]),
-                seed=rng.randrange(0, 2**31 - 1),
-            ))
-        if executor is not None:
-            # chunksize > 1 amortizes pipe-IPC across multiple jobs per worker
-            chunksize = max(1, len(jobs) // (max_workers or 8) // 2)
-            results = list(executor.map(_run_one, jobs, chunksize=chunksize))
-        else:
-            results = run_jobs_in_parallel(jobs, max_workers=max_workers)
-    else:
+        # Injury state must stay consistent, so run games serially with rolls.
         results = []
         for game in games:
             home = teams[game.home_team_id]
             away = teams[game.away_team_id]
+            home_available, home_ir = prepare_team_roster(
+                db, season=season, roster=rosters[home.id], rng=rng,
+                phase="regular_season", event_date=target_date,
+            )
+            away_available, away_ir = prepare_team_roster(
+                db, season=season, roster=rosters[away.id], rng=rng,
+                phase="regular_season", event_date=target_date,
+            )
+            day_report = merge_reports(day_report, home_ir, away_ir)
             results.append(run_game(
                 game_id=game.id,
                 season=season,
                 home_id=home.id,
                 home_abbr=home.abbreviation,
-                home_players=rosters[home.id],
+                home_players=home_available,
                 away_id=away.id,
                 away_abbr=away.abbreviation,
-                away_players=rosters[away.id],
+                away_players=away_available,
                 rng=rng,
                 capture_play_log=capture_play_log,
             ))
+            advance_injury_clocks(
+                db, season=season, team_ids={home.id, away.id},
+                phase="regular_season", event_date=target_date,
+            )
+    else:
+        results = []
+        for game in games:
+            home = teams[game.home_team_id]
+            away = teams[game.away_team_id]
+            home_available, home_ir = prepare_team_roster(
+                db, season=season, roster=rosters[home.id], rng=rng,
+                phase="regular_season", event_date=target_date,
+            )
+            away_available, away_ir = prepare_team_roster(
+                db, season=season, roster=rosters[away.id], rng=rng,
+                phase="regular_season", event_date=target_date,
+            )
+            day_report = merge_reports(day_report, home_ir, away_ir)
+            results.append(run_game(
+                game_id=game.id,
+                season=season,
+                home_id=home.id,
+                home_abbr=home.abbreviation,
+                home_players=home_available,
+                away_id=away.id,
+                away_abbr=away.abbreviation,
+                away_players=away_available,
+                rng=rng,
+                capture_play_log=capture_play_log,
+            ))
+            advance_injury_clocks(
+                db, season=season, team_ids={home.id, away.id},
+                phase="regular_season", event_date=target_date,
+            )
 
     # Persist results (sequentially, since SQLAlchemy session lives here).
     for game, result in zip(games, results):
@@ -173,6 +195,7 @@ def sim_day(
         games_played=len(results),
         box_scores_written=len(box_score_payload),
         results=results,
+        injury_report=day_report.to_dict() if day_report.new_injuries or day_report.unavailable else None,
     )
 
 

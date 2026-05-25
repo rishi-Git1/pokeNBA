@@ -17,6 +17,7 @@ from sqlalchemy.orm import Session
 
 from backend.core.config import settings
 from backend.league.state import get_state
+from backend.league.injuries import apply_waiver_wire_penalty, handle_player_release
 from backend.models import DraftPick, Player, Team
 
 
@@ -179,6 +180,10 @@ def sign_free_agent(db: Session, *, team_id: int, player_id: int) -> Player:
     if player.team_id is not None:
         raise TransactionError("Player is already on a team.")
 
+    if player.injury_penalty_pending:
+        apply_waiver_wire_penalty(player)
+        player.injury_penalty_pending = False
+
     roster = _team_roster(db, team.id)
     new_total = _bst_total(roster) + player.effective_bst
     _check_cap(db, team.name, new_total)
@@ -198,6 +203,10 @@ def release_player(db: Session, *, team_id: int, player_id: int) -> Player:
         raise TransactionError("Player is not on that team.")
     roster = _team_roster(db, team_id)
     _check_roster_bounds("releasing team", len(roster) - 1)
+
+    season = get_state(db).current_season
+    if handle_player_release(db, player=player, season=season):
+        player.injury_penalty_pending = True
 
     player.team_id = None
     db.commit()

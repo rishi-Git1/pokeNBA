@@ -85,9 +85,22 @@ def _english_name(species: dict) -> str:
 
 
 def _format_ability(raw: str) -> str:
-    # Match existing minidex style: "Sand Rush", "Soul-Heart"
-    parts = [p.capitalize() for p in raw.split("-")]
-    return "-".join(parts) if raw.count("-") else " ".join(parts)
+    # Match abilities_db.json style: "Sand Rush", "Good as Gold", "Soul-Heart"
+    words = [p.lower() for p in raw.split("-")]
+    parts: list[str] = []
+    small = {"as", "of", "the", "and"}
+    for i, w in enumerate(words):
+        if i > 0 and w in small:
+            parts.append(w)
+        else:
+            parts.append(w.capitalize())
+    name = " ".join(parts)
+    aliases = {
+        "Dragons Maw": "Dragon's Maw",
+        "Good As Gold": "Good as Gold",
+        "Soul Heart": "Soul-Heart",
+    }
+    return aliases.get(name, name)
 
 
 def _national_dex_id(species: dict) -> int:

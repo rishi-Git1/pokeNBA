@@ -2,6 +2,50 @@
 
 const BASE = ""; // same-origin via FastAPI mount
 
+const GM_STORAGE_KEY = "pokenba_gm";
+let _gmMode = "league_gm";
+let _userTeamId = null;
+
+function _loadGmFromStorage() {
+  try {
+    const raw = localStorage.getItem(GM_STORAGE_KEY);
+    if (!raw) return;
+    const parsed = JSON.parse(raw);
+    _gmMode = parsed.mode === "team_gm" ? "team_gm" : "league_gm";
+    _userTeamId = parsed.teamId ?? null;
+    if (_gmMode === "team_gm" && _userTeamId == null) {
+      _gmMode = "league_gm";
+    }
+  } catch (_) { /* ignore */ }
+}
+
+_loadGmFromStorage();
+
+export function getGmMode() {
+  return _gmMode;
+}
+
+export function getUserTeamId() {
+  return _userTeamId;
+}
+
+export function setGmContext(mode, teamId = null) {
+  _gmMode = mode === "team_gm" ? "team_gm" : "league_gm";
+  _userTeamId = teamId ?? null;
+  localStorage.setItem(GM_STORAGE_KEY, JSON.stringify({
+    mode: _gmMode,
+    teamId: _userTeamId,
+  }));
+}
+
+function gmQuery() {
+  const params = { game_mode: _gmMode };
+  if (_gmMode === "team_gm" && _userTeamId != null) {
+    params.user_team_id = _userTeamId;
+  }
+  return qs(params);
+}
+
 async function request(path, opts = {}) {
   const res = await fetch(`${BASE}${path}`, {
     headers: { "Content-Type": "application/json" },
@@ -24,6 +68,8 @@ export const api = {
   teams:        () => request("/api/teams"),
   team:         (id) => request(`/api/teams/${id}`),
   player:       (id) => request(`/api/players/${id}`),
+  playerInjuries: (id, season) =>
+                  request(`/api/players/${id}/injuries${season != null ? `?season=${season}` : ""}`),
   players:      (params = {}) => request(`/api/players?${qs(params)}`),
   standings:    () => request("/api/league/standings"),
   freeAgents:   (limit = 100) => request(`/api/league/free-agents?limit=${limit}`),
@@ -40,7 +86,11 @@ export const api = {
                     request(`/api/sim/recent-results?${qs({ limit, season })}`),
   upcomingGames:   (limit = 10, season) =>
                     request(`/api/sim/upcoming-games?${qs({ limit, season })}`),
-  simDay:          (season) => request(`/api/sim/day${season != null ? `?season=${season}` : ""}`, { method: "POST" }),
+  simDay:          (season) => request(`/api/sim/day?${qs({
+                    ...(season != null ? { season } : {}),
+                    game_mode: _gmMode,
+                    ...(_gmMode === "team_gm" && _userTeamId != null ? { user_team_id: _userTeamId } : {}),
+                  })}`, { method: "POST" }),
   simSeason:       (season) => request(`/api/sim/season${season != null ? `?season=${season}` : ""}`, { method: "POST" }),
   generateSchedule:(season) => request(`/api/sim/schedule${season != null ? `?season=${season}` : ""}`, { method: "POST" }),
   boxScore:        (gameId) => request(`/api/sim/games/${gameId}/box`),
@@ -48,9 +98,9 @@ export const api = {
   // transactions
   trade:        (payload) => request("/api/transactions/trade", { method: "POST", body: JSON.stringify(payload) }),
   sign:         (teamId, playerId) =>
-                  request(`/api/transactions/sign?team_id=${teamId}&player_id=${playerId}`, { method: "POST" }),
+                  request(`/api/transactions/sign?team_id=${teamId}&player_id=${playerId}&${gmQuery()}`, { method: "POST" }),
   release:      (teamId, playerId) =>
-                  request(`/api/transactions/release?team_id=${teamId}&player_id=${playerId}`, { method: "POST" }),
+                  request(`/api/transactions/release?team_id=${teamId}&player_id=${playerId}&${gmQuery()}`, { method: "POST" }),
 
   // projections / config
   capConfig:    () => request("/api/league/cap-config"),

@@ -6,9 +6,10 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session, selectinload
 
 from backend.database import get_db
+from backend.league.injuries import enrich_players
 from backend.league.state import get_state
 from backend.models import Player, Team
-from backend.schemas import PlayerSummary, TeamOut, TeamSummary
+from backend.schemas import TeamOut, TeamSummary
 
 router = APIRouter(prefix="/api/teams", tags=["teams"])
 
@@ -41,5 +42,5 @@ def get_team(team_id: int, db: Session = Depends(get_db)) -> dict:
         "losses": team.losses,
         "bst_cap": state.bst_cap,
         "bst_used": bst_used,
-        "roster": [PlayerSummary.model_validate(p) for p in roster],
+        "roster": enrich_players(db, roster, season=state.current_season),
     }

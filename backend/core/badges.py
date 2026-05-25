@@ -39,7 +39,28 @@ def map_ability_to_badge(ability_name: str) -> str:
     this keeps the seed script bullet-proof if the minidex contains an
     obscure ability we haven't cataloged yet.
     """
-    return ability_mapping().get(ability_name, DEFAULT_BADGE)
+    return ability_mapping().get(normalize_ability_name(ability_name), DEFAULT_BADGE)
+
+
+def normalize_ability_name(ability_name: str) -> str:
+    """Unify PokeAPI slugs and display names for lookup."""
+    cleaned = " ".join(ability_name.replace("-", " ").split())
+    words = cleaned.split()
+    parts: list[str] = []
+    small = {"as", "of", "the", "and"}
+    for i, word in enumerate(words):
+        lower = word.lower()
+        if i > 0 and lower in small:
+            parts.append(lower)
+        else:
+            parts.append(lower.capitalize())
+    name = " ".join(parts)
+    aliases = {
+        "Dragons Maw": "Dragon's Maw",
+        "Good As Gold": "Good as Gold",
+        "Soul Heart": "Soul-Heart",
+    }
+    return aliases.get(name, name)
 
 
 def badge_effects(badge: str) -> dict[str, float]:

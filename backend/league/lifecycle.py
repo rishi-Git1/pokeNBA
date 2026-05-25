@@ -122,6 +122,10 @@ def finalize_playoffs(db: Session, *, rng: random.Random | None = None) -> None:
     # 1) age + retire + spawn regens + mint next-year picks
     end_of_season(db, season=season, rng=rng)
 
+    # 1b) clear injury state for the completed season (before draft)
+    from backend.league.injuries import reset_season_injuries
+    reset_season_injuries(db, season=season)
+
     # 2) cap inflation 5–12%
     inflation = rng.uniform(CAP_INFLATION_MIN, CAP_INFLATION_MAX)
     state.bst_cap = int(round(state.bst_cap * (1 + inflation)))
