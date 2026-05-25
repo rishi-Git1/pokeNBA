@@ -91,17 +91,8 @@ def _seed_conference(db: Session, conference: str) -> list[Team]:
 # ----------------------------------------------------------------------------
 # Per-game simulation
 # ----------------------------------------------------------------------------
-def sim_next_playoff_game(db: Session, *, rng: random.Random | None = None) -> dict:
-    """Sim the next undecided game in the earliest-round active series.
-
-    Returns a small dict with the result. Raises ``RuntimeError`` if there are
-    no active series.
-    """
-    rng = rng or random.Random()
-    series = _next_active_series(db)
-    if series is None:
-        raise RuntimeError("No active playoff series.")
-
+def _sim_one_series_game(db: Session, series: Series, *, rng: random.Random) -> dict:
+    """Sim the next scheduled game in a single series."""
     game_number = series.high_seed_wins + series.low_seed_wins + 1
     home_team, away_team = _matchup_home_away(db, series, game_number)
 
@@ -124,7 +115,7 @@ def sim_next_playoff_game(db: Session, *, rng: random.Random | None = None) -> d
         series_game_number=game_number,
     )
     db.add(game)
-    db.flush()  # need game.id for box score writes
+    db.flush()
 
     result = run_game(
         game_id=game.id,
@@ -138,7 +129,6 @@ def sim_next_playoff_game(db: Session, *, rng: random.Random | None = None) -> d
         rng=rng,
     )
 
-    # Persist Game + box scores
     game.home_score = result.home_score
     game.away_score = result.away_score
     game.overtime_periods = result.overtime_periods
@@ -148,7 +138,6 @@ def sim_next_playoff_game(db: Session, *, rng: random.Random | None = None) -> d
         from backend.models import BoxScore
         db.execute(insert(BoxScore), result.box_scores)
 
-    # Update series tally
     home_won = result.home_score > result.away_score
     winner_id = home_team.id if home_won else away_team.id
     if winner_id == series.high_seed_team_id:
@@ -171,8 +160,99 @@ def sim_next_playoff_game(db: Session, *, rng: random.Random | None = None) -> d
 
     if series_finished_now:
         _maybe_advance_round(db, series.season, series.round)
-        # If the Finals just ended, the lifecycle layer will pick it up.
+
     return _series_state(db, series, latest_game=game, injury_report=injury_report)
+
+
+def sim_next_playoff_game(db: Session, *, rng: random.Random | None = None) -> dict:
+    """Sim the next undecided game in the earliest-round active series."""
+    rng = rng or random.Random()
+    series = _next_active_series(db)
+    if series is None:
+        raise RuntimeError("No active playoff series.")
+    return _sim_one_series_game(db, series, rng=rng)
+
+
+def current_round_slate(db: Session, season: int) -> dict | None:
+    """Next simultaneous game number for every still-active series in the current round."""
+    incomplete = list(db.scalars(
+        select(Series)
+        .where(Series.season == season, Series.is_completed.is_(False))
+        .order_by(Series.round, Series.slot_index, Series.id)
+    ))
+    if not incomplete:
+        return None
+
+    current_round = incomplete[0].round
+    round_series = [s for s in incomplete if s.round == current_round]
+    slate_game = min(s.high_seed_wins + s.low_seed_wins + 1 for s in round_series)
+    ready = [s for s in round_series if s.high_seed_wins + s.low_seed_wins + 1 == slate_game]
+
+    return {
+        "round": current_round,
+        "slate_game": slate_game,
+        "series_count": len(ready),
+        "series_ids": [s.id for s in ready],
+    }
+
+
+def sim_round_slate(db: Session, *, rng: random.Random | None = None) -> dict:
+    """Sim the next game number across every active series in the current round.
+
+    Example: round 1 starts at 0-0 for all eight matchups — one click sims
+    Game 1 in each series (eight games), then the button becomes Sim Game 2.
+    """
+    rng = rng or random.Random()
+    slate = current_round_slate(db, _playoff_season(db))
+    if slate is None:
+        raise RuntimeError("No active playoff series.")
+
+    series_rows = [
+        db.get(Series, sid) for sid in slate["series_ids"]
+    ]
+    series_rows = [s for s in series_rows if s is not None and not s.is_completed]
+    if not series_rows:
+        raise RuntimeError("No series ready for the current slate.")
+
+    results: list[dict] = []
+    all_new: list[dict] = []
+    all_unavail: list[dict] = []
+    for series in series_rows:
+        if series.is_completed:
+            continue
+        next_num = series.high_seed_wins + series.low_seed_wins + 1
+        if next_num != slate["slate_game"]:
+            continue
+        outcome = _sim_one_series_game(db, series, rng=rng)
+        results.append(outcome)
+        ir = outcome.get("injury_report")
+        if ir:
+            all_new.extend(ir.get("new_injuries", []))
+            all_unavail.extend(ir.get("unavailable", []))
+
+    return {
+        "round": slate["round"],
+        "slate_game": slate["slate_game"],
+        "games_played": len(results),
+        "results": results,
+        "injury_report": {"new_injuries": all_new, "unavailable": all_unavail},
+    }
+
+
+def _playoff_season(db: Session) -> int:
+    row = db.scalars(
+        select(Series.season)
+        .where(Series.is_completed.is_(False))
+        .order_by(Series.season.desc())
+        .limit(1)
+    ).first()
+    if row is not None:
+        return row
+    row = db.scalars(select(Series.season).order_by(Series.season.desc()).limit(1)).first()
+    if row is None:
+        from backend.league.state import get_state
+        return get_state(db).current_season
+    return row
 
 
 def sim_next_playoff_round(db: Session, *, rng: random.Random | None = None) -> dict:
@@ -350,8 +430,10 @@ def get_bracket(db: Session, season: int) -> dict:
     rows = list(db.scalars(
         select(Series).where(Series.season == season).order_by(Series.round, Series.bracket, Series.slot_index)
     ))
+    slate = current_round_slate(db, season)
     return {
         "season": season,
+        "slate": slate,
         "series": [
             {
                 "id": s.id,

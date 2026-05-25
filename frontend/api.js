@@ -66,6 +66,7 @@ export const api = {
   // playoffs
   bracket:    (season) => request(`/api/playoffs/bracket${season != null ? `?season=${season}` : ""}`),
   simPlayoffGame:  () => request("/api/playoffs/game",  { method: "POST" }),
+  simPlayoffSlate: () => request("/api/playoffs/slate", { method: "POST" }),
   simPlayoffRound: () => request("/api/playoffs/round", { method: "POST" }),
 
   // draft

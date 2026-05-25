@@ -90,7 +90,7 @@ uvicorn backend.main:app --reload
 
 ## Deploy on Render
 
-Render was defaulting to **Python 3.14**, which has no pre-built wheels for `pydantic-core` yet — the build tries to compile Rust and fails. This repo pins **Python 3.12** via `runtime.txt`.
+Render was defaulting to **Python 3.14**, which has no pre-built wheels for `pydantic-core` yet — the build tries to compile Rust and fails. This repo pins **Python 3.12.8** via `.python-version` (Render does **not** read `runtime.txt`).
 
 **Dashboard settings:**
 
@@ -98,6 +98,7 @@ Render was defaulting to **Python 3.14**, which has no pre-built wheels for `pyd
 |---|---|
 | **Build Command** | `pip install --upgrade pip && pip install -r requirements.txt` |
 | **Start Command** | `uvicorn backend.main:app --host 0.0.0.0 --port $PORT` |
+| **Environment** | `PYTHON_VERSION=3.12.8` (recommended even with `.python-version`) |
 
 Or connect the repo and use the included `render.yaml` blueprint.
 

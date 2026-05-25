@@ -5,7 +5,7 @@
  * Sprites come straight from PokeAPI's CDN (urls baked in by the backend).
  * ===================================================================== */
 
-import { api } from "/static/api.js";
+import { api } from "/static/api.js?v=20260525";
 
 // ---------------------------------------------------------------- DOM helpers
 const $  = (sel, root = document) => root.querySelector(sel);
@@ -895,6 +895,11 @@ async function viewPlayoffs(view) {
     view.appendChild(injuryReportCard(_lastPlayoffInjuryReport));
   }
 
+  if (state.phase === "playoffs") {
+    const slateNum = bracket.slate?.slate_game ?? await fetchPlayoffSlateNum();
+    view.appendChild(playoffSimToolbar(slateNum));
+  }
+
   const byRound = new Map([[1, []], [2, []], [3, []], [4, []]]);
   bracket.series.forEach(s => byRound.get(s.round).push(s));
 
@@ -1036,6 +1041,78 @@ function notifyPlayoffInjuries(report, scoreText) {
   const names = report.new_injuries.slice(0, 3).map(i => `${i.player_name} (${i.games_out}G)`).join(", ");
   const extra = n > 3 ? ` +${n - 3} more` : "";
   toast(`${scoreText ? scoreText + " · " : ""}Injured: ${names}${extra}`, "warn");
+}
+
+async function fetchPlayoffSlateNum() {
+  try {
+    const bracket = await api.bracket();
+    return bracket.slate?.slate_game ?? 1;
+  } catch (err) {
+    console.warn("bracket load failed:", err);
+    return 1;
+  }
+}
+
+function wirePlayoffSimButtons(primary, secondary, tertiary, slateNum) {
+  primary.textContent = `Sim Game ${slateNum}`;
+  primary.title = `Sim Game ${slateNum} in every active series this round`;
+  primary.onclick = () => simAction(primary, async () => {
+    const r = await api.simPlayoffSlate();
+    if (r?.transition?.transition === "playoffs -> draft") {
+      toast("Champion crowned! Time to draft.", "success");
+    } else {
+      const s = r?.summary;
+      notifyPlayoffInjuries(
+        s?.injury_report,
+        s ? `Game ${s.slate_game} · ${s.games_played} games` : null,
+      );
+    }
+  });
+
+  secondary.textContent = "Sim 1 Game";
+  secondary.title = "Sim the next game in one series";
+  secondary.onclick = () => simAction(secondary, async () => {
+    const r = await api.simPlayoffGame();
+    if (r?.transition?.transition === "playoffs -> draft") {
+      toast("Champion crowned! Time to draft.", "success");
+    } else {
+      notifyPlayoffInjuries(r?.result?.injury_report, r?.result?.latest_score);
+    }
+  });
+
+  if (tertiary) {
+    tertiary.classList.remove("hidden");
+    tertiary.textContent = "Sim 1 Round";
+    tertiary.title = "Sim the rest of the current round";
+    tertiary.onclick = () => simAction(tertiary, async () => {
+      const r = await api.simPlayoffRound();
+      if (r?.transition?.transition === "playoffs -> draft") {
+        toast("Champion crowned! Time to draft.", "success");
+      } else {
+        const reports = r?.summary?.injury_reports || [];
+        const totalInj = reports.reduce((n, rep) => n + (rep.new_injuries?.length ?? 0), 0);
+        _lastPlayoffInjuryReport = reports.length ? reports[reports.length - 1] : null;
+        toast(
+          `Round simmed · ${r?.summary?.games_played ?? 0} games` +
+          (totalInj ? ` · ${totalInj} injuries` : ""),
+          totalInj ? "warn" : "success",
+        );
+      }
+    });
+  }
+}
+
+function playoffSimToolbar(slateNum) {
+  const primary = el("button", { class: "btn btn-primary", type: "button" });
+  const secondary = el("button", { class: "btn btn-ghost", type: "button" });
+  const tertiary = el("button", { class: "btn btn-ghost", type: "button" });
+  wirePlayoffSimButtons(primary, secondary, tertiary, slateNum);
+  return el("div", { class: "playoffs-toolbar card" },
+    el("div", { class: "playoffs-toolbar-label muted" }, "Simulate"),
+    primary,
+    secondary,
+    tertiary,
+  );
 }
 
 // =====================================================================
@@ -1190,13 +1267,16 @@ async function refreshPhaseUI() {
   playoffsTab.classList.toggle("hidden", !playoffsVisible);
   draftTab.classList.toggle("hidden", state.phase !== "draft");
 
-  // Configure the two main sim buttons based on phase.
+  // Configure sim buttons based on phase.
   const primary = $("#sim-primary-btn");
   const secondary = $("#sim-secondary-btn");
+  const tertiary = $("#sim-tertiary-btn");
   primary.classList.remove("hidden");
   secondary.classList.remove("hidden");
+  tertiary.classList.add("hidden");
   primary.onclick = null;
   secondary.onclick = null;
+  tertiary.onclick = null;
 
   if (state.phase === "regular_season") {
     primary.textContent = "Sim 1 Day";
@@ -1228,33 +1308,8 @@ async function refreshPhaseUI() {
       }
     });
   } else if (state.phase === "playoffs") {
-    primary.textContent = "Sim 1 Game";
-    primary.title = "Sim the next game in the active series";
-    primary.onclick = () => simAction(primary, async () => {
-      const r = await api.simPlayoffGame();
-      if (r?.transition?.transition === "playoffs -> draft") {
-        toast("Champion crowned! Time to draft.", "success");
-      } else {
-        notifyPlayoffInjuries(r?.result?.injury_report, r?.result?.latest_score);
-      }
-    });
-    secondary.textContent = "Sim 1 Round";
-    secondary.title = "Sim every active series in the current round to completion";
-    secondary.onclick = () => simAction(secondary, async () => {
-      const r = await api.simPlayoffRound();
-      if (r?.transition?.transition === "playoffs -> draft") {
-        toast("Champion crowned! Time to draft.", "success");
-      } else {
-        const reports = r?.summary?.injury_reports || [];
-        const totalInj = reports.reduce((n, rep) => n + (rep.new_injuries?.length ?? 0), 0);
-        _lastPlayoffInjuryReport = reports.length ? reports[reports.length - 1] : null;
-        toast(
-          `Round simmed · ${r?.summary?.games_played ?? 0} games` +
-          (totalInj ? ` · ${totalInj} injuries` : ""),
-          totalInj ? "warn" : "success",
-        );
-      }
-    });
+    const slateNum = await fetchPlayoffSlateNum();
+    wirePlayoffSimButtons(primary, secondary, tertiary, slateNum);
   } else if (state.phase === "draft") {
     primary.textContent = "Auto-pick";
     primary.title = "Make the best-available pick for the team on the clock";
@@ -1275,6 +1330,7 @@ async function refreshPhaseUI() {
   } else { // pre_season
     primary.classList.add("hidden");
     secondary.classList.add("hidden");
+    tertiary.classList.add("hidden");
   }
 
   // Top-left pulsing action button.

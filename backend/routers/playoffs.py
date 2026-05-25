@@ -10,6 +10,7 @@ from backend.league.playoffs import (
     get_bracket,
     sim_next_playoff_game,
     sim_next_playoff_round,
+    sim_round_slate,
 )
 from backend.league.state import get_state
 from backend.models import Phase
@@ -42,5 +43,19 @@ def post_round(db: Session = Depends(get_db)) -> dict:
     if state.phase != Phase.PLAYOFFS:
         raise HTTPException(status_code=400, detail=f"Not in playoffs (phase={state.phase.value}).")
     summary = sim_next_playoff_round(db)
+    transition = maybe_advance_phase(db)
+    return {"summary": summary, "transition": transition}
+
+
+@router.post("/slate")
+def post_slate(db: Session = Depends(get_db)) -> dict:
+    """Sim the next game number across every active series in the current round."""
+    state = get_state(db)
+    if state.phase != Phase.PLAYOFFS:
+        raise HTTPException(status_code=400, detail=f"Not in playoffs (phase={state.phase.value}).")
+    try:
+        summary = sim_round_slate(db)
+    except RuntimeError as exc:
+        raise HTTPException(status_code=400, detail=str(exc))
     transition = maybe_advance_phase(db)
     return {"summary": summary, "transition": transition}
